@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaulaPhotography</title>
+    <link rel="stylesheet" href="formato.css">
+</head>
+<body>
+    <a href = "index.html" class="volver">Volver</a>
+    <div class="corner-container">
+      <img src="assets/images/Camara-logo.png" alt="imagen no cargada">
+      <span>PF</span>
+  </div>
+  <h1><a href = "index.html" class="volver">CONTACTO</a></h1>
+    <nav>
+      <ul class="contenedor">
+        <li><a href = "galeria.html" >Galería</a></li>
+        <li><a href = "blog.html" >Blog</a>
+        <ul class="submenu">
+            <li><a href="blog.html#trabajo">Trabajo</a></li>
+            <li><a href="blog.html#viajes">Viajes</a></li>
+          </ul>
+        </li>
+        <li class="aqui"><a href = "contacto.html" >Contacto</a></li>
+        <li><a href = "comprar.html" >Comprar</a>
+        <ul class="submenu">
+            <li><a href="comprar.html#sesiones">Sesiones</a></li>
+            <li><a href="comprar.html#imprimir">Imprimir</a></li>
+            <li><a href="comprar.html#servicios">Servicios</a></li>
+          </ul></li>
+        <li><a href = "inspiracion.html" >Inspiración</a></li>
+        <li><a href = "yo.html" >Quién soy</a></li>
+    </ul>
+       </nav>
+    
+    <br>
+
+
+    <form action="respuestaFormulario.html" method="get">
+        <fieldset>
+         <legend>Datos personales</legend>
+         <p>
+          <label for="nombre">Nombre:</label><br>
+          <input type="text" id="nombre" name="nombre" maxlength="50" size="25" placeholder="Tu nombre" required>
+      </p>
+      <p>
+          <label for="email">Correo electrónico:</label><br>
+          <input type="email" id="email" name="email" maxlength="50" size="25" placeholder="tucorreo@example.com" required>
+      </p>
+        </fieldset>
+        <fieldset>
+          <legend>Cita Previa</legend>
+          <p>
+              <label for="fecha">Fecha de la cita:</label><br>
+              <input type="date" id="fecha" name="fecha" min="2024-02-10" required> <!-- Año mes día -->
+          </p>
+          <p>
+              <label for="razon">Razón de la cita:</label><br>
+              <input type="checkbox" id="info_sesiones" name="razon" value="info_sesiones" >
+              <label for="info_sesiones">Información sesiones</label><br>
+              <input type="checkbox" id="comprar_foto" name="razon" value="comprar_foto" >
+              <label for="comprar_foto">Comprar foto</label><br>
+              <input type="checkbox" id="otro" name="razon" value="otro">
+              <label for="otro">Otro</label><br>
+          </p>
+          <p>
+              <label for="cantidad">Personas:</label><br>
+              <input type="number" id="cantidad" name="cantidad" min="1" max="5" required>
+          </p>
+      </fieldset>
+        <fieldset>
+         <legend>Comentarios</legend>
+         <p>
+          <label for="story">Mensaje</label><br>
+          <textarea id="story" name="instrucciones" rows="10" cols="50"></textarea>
+         </p>
+        </fieldset>
+        <fieldset>
+          <button type="submit">Enviar</button>
+          <button type="reset">Limpiar</button>
+        </fieldset>
+       </form>
+
+       <footer>
+        <div class="footer-content">
+          <div>
+            <a href="https://www.facebook.com/ejemplo" target="_blank">Facebook</a>
+            <span> | </span>
+            <a href="https://twitter.com/ejemplo" target="_blank">Twitter</a>
+            <span> | </span>
+            <a href="https://www.instagram.com/ejemplo" target="_blank">Instagram</a>
+          </div>
+        </div>
+      </footer>
+      
+</body>
+</html>

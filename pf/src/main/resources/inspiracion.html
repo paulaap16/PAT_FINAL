@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            PaulaPhotography
+        </title>
+        <link rel="stylesheet" href="formato.css">
+    </head>
+    <body>
+        <a href = "index.html" class="volver">Volver</a>
+        <div class="corner-container">
+          <img src="assets/images/Camara-logo.png" alt="imagen no cargada">
+          <span>PF</span>
+      </div>
+      <h1><a href = "index.html" class="volver">INSPIRACIÓN</a></h1>
+        <nav>
+          <ul class="contenedor">
+            <li><a href = "galeria.html" >Galería</a></li>
+            <li><a href = "blog.html" >Blog</a>
+            <ul class="submenu">
+                <li><a href="blog.html#trabajo">Trabajo</a></li>
+                <li><a href="blog.html#viajes">Viajes</a></li>
+              </ul>
+            </li>
+            <li><a href = "contacto.html" >Contacto</a></li>
+            <li><a href = "comprar.html" >Comprar</a>
+            <ul class="submenu">
+                <li><a href="comprar.html#sesiones">Sesiones</a></li>
+                <li><a href="comprar.html#imprimir">Imprimir</a></li>
+                <li><a href="comprar.html#servicios">Servicios</a></li>
+              </ul></li>
+            <li class="aqui"><a href = "inspiracion.html" >Inspiración</a></li>
+            <li><a href = "yo.html" >Quién soy</a></li>
+        </ul>
+           </nav>
+        
+        <br>
+
+        <h1>Obtén Inspiración</h1>
+        <label for="width" style="font-size: 17px;">Ancho:</label>
+        <input type="number" id="width" value="500" min="150" max="800" size="4" >
+        <label for="height" style="font-size: 17px;">Alto:</label>
+        <input type="number" id="height" value="400" min="150" max="700" size="4" >
+        <br>
+        <label for="blur" style="font-size: 17px;">Desenfoque:</label>
+        <input type="range" id="blur" min="1" max="10" value="1">
+        <br>
+        <label for="grayscale" style="font-size: 17px;">Blanco y Negro:</label>
+        <input type="checkbox" id="grayscale">
+        <br>
+        <button type="button" id="getInspiration" style="font-size: 14px;">Obtener Inspiración</button>
+        <div id="inspirationImage"></div>
+
+        <script src="inspiracion.js"></script>
+        
+        <br>
+        <footer>
+          <div class="footer-content">
+            <div>
+              <a href="https://www.facebook.com/ejemplo" target="_blank">Facebook</a>
+              <span> | </span>
+              <a href="https://twitter.com/ejemplo" target="_blank">Twitter</a>
+              <span> | </span>
+              <a href="https://www.instagram.com/ejemplo" target="_blank">Instagram</a>
+            </div>
+          </div>
+        </footer>
+          
+    </body>
+</html>

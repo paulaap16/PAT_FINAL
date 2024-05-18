@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaulaPhotography</title>
+    <link rel="stylesheet" href="../formato.css">
+    <style>
+        .logo-container {
+            position: absolute;
+            top: 10px; /* Ajusta según sea necesario */
+            right: 10px; /* Ajusta según sea necesario */
+        }
+
+        .logo-container img {
+            width: 46px;
+            height: 36px;
+            vertical-align: middle;
+        }
+
+        #cart-counter {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 16px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <a href = "../blog.html#viajes" class="volver">Volver</a>
+    <h1>INDIA</h1>
+    <div class="logo-container">
+        <img src="../assets/images/Camara-logo.png" alt="imagen no cargada" width="46" height="36">
+        <div id="cart-counter">0</div>
+    </div>
+
+    <div class="photo">
+        <img src="../assets/images/india/tm.jpeg" alt="Foto 1">
+        <div class="description">
+            <h2>Taj Mahal</h2>
+            20€
+            <div class="ranking">
+                
+            </div>
+             <button class="buy-button" onclick="añadirAlCarrito(this)">Comprar</button>
+        </div>
+    </div>
+    
+    <div class="photo">
+        <img src="../assets/images/india/city.jpg" alt="Foto 2">
+        <div class="description">
+            <h2>City</h2>
+            20€
+            <div class="ranking">
+                
+            </div>
+            <button class="buy-button" onclick="añadirAlCarrito(this)">Comprar</button>
+        </div>
+    </div>
+    <div class="photo">
+        <img src="../assets/images/india/arco.jpg" alt="Foto 2">
+        <div class="description">
+            <h2> ...</h2>
+            20€
+            <div class="ranking">
+               
+            </div>
+            <button class="buy-button" onclick="añadirAlCarrito(this)">Comprar</button>
+        </div>
+    </div>
+    <div class="photo">
+        <img src="../assets/images/india/pob.jpeg" alt="Foto 2">
+        <div class="description">
+            <h2>...</h2>
+            20€
+            <div class="ranking">
+                
+            </div>
+            <button class="buy-button" onclick="añadirAlCarrito(this)">Comprar</button>s
+        </div>
+    </div>
+    </div>
+
+    <script src="carrito.js"></script>
+
+</body>
+</html>

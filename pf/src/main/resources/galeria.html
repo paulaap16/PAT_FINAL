@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaulaPhotography</title>
+    
+    <link rel="stylesheet" href="formato.css">
+    <style>
+        
+        .sidebar {
+            height: 100%;
+            width: 150px; 
+            position: fixed;
+            background-color: #333;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            left: -150px; /* Inicialmente oculto */
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            z-index: 2;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .toggle-bar {
+            display: none;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <a href = "index.html" class="volver">Volver</a>
+    <div class="corner-container">
+        <img src="assets/images/Camara-logo.png" alt="imagen no cargada">
+        <span>PF</span>
+    </div>
+    <h1><a href = "index.html" class="volver">MI GALERÍA</a></h1>
+    <nav>
+        <ul class="contenedor">
+            <li class="aqui"><a href = "galeria.html" >Galería</a></li>
+            <li><a href = "blog.html" >Blog</a>
+            <ul class="submenu">
+                <li><a href="blog.html#trabajo">Trabajo</a></li>
+                <li><a href="blog.html#viajes">Viajes</a></li>
+              </ul>
+            </li>
+            <li><a href = "contacto.html" >Contacto</a></li>
+            <li><a href = "comprar.html" >Comprar</a>
+            <ul class="submenu">
+                <li><a href="comprar.html#sesiones">Sesiones</a></li>
+                <li><a href="comprar.html#imprimir">Imprimir</a></li>
+                <li><a href="comprar.html#servicios">Servicios</a></li>
+              </ul></li>
+            <li><a href = "inspiracion.html" >Inspiración</a></li>
+            <li><a href = "yo.html" >Quién soy</a></li>
+        </ul>
+       </nav>
+    
+    <br>
+    <button class="menuGaleria" onclick="abrirMenuGaleria()">MENÚ</button>
+    <img id="galeriaPortada" src="assets/images/Galeria.jpg">
+
+    <div class="sidebar" id="sidebar">
+        <a href="#" onclick="mostrarContenido('Cuidades')">Cuidades</a>
+        <a href="#" onclick="mostrarContenido('Naturaleza')">Naturaleza</a>
+        <a href="#" onclick="mostrarContenido('Deporte')">Deporte</a>
+    
+    </div>
+
+    <div class="content" id="contenido">
+        <div id="Cuidades" style="display: none;">
+            <h2>Cuidades</h2>
+            <img src="assets/images/madrid.jpg" alt="Imagen 2" style="max-width: 100%; height: auto;">
+            <br>
+            <img src="assets/images/ny.jpg" alt="Imagen 2" style="max-width: 100%; height: auto;">
+            <br>
+            <img src="assets/images/R.jpeg" alt="Imagen 2" style="max-width: 100%; height: auto;">
+            <br>
+            <img src="assets/images/T.jpg" alt="Imagen 2" style="max-width: 100%; height: auto;">
+            
+            
+            
+        </div>
+        <div id="Naturaleza" style="display: none;">
+            <h2>Naturaleza</h2>
+            <img src="assets/images/paisajes/japon.jpg" alt="Imagen 2" style="max-width: 100%; height: auto;">
+            <br>
+            <img src="assets/images/paisajes/Reflexion.jpg" alt="Imagen 2" style="max-width: 100%; height: auto;">
+            <br>
+            
+        </div>
+        <div id="Deporte" style="display: none;">
+            <h2>Deporte</h2>
+            <img src="assets/images/fotobw.jpg" alt="Imagen 2" style="max-width: 100%; height: auto;">
+            <br>
+            
+        </div>
+    </div>
+    
+
+    <footer>
+        <div class="footer-content">
+          <div>
+            <a href="https://www.facebook.com/ejemplo" target="_blank">Facebook</a>
+            <span> | </span>
+            <a href="https://twitter.com/ejemplo" target="_blank">Twitter</a>
+            <span> | </span>
+            <a href="https://www.instagram.com/ejemplo" target="_blank">Instagram</a>
+          </div>
+        </div>
+      </footer>
+
+      <script>
+        var sidebarVisible = false;
+
+        function abrirMenuGaleria() {
+            var sidebar = document.getElementById('sidebar');
+            var content = document.getElementById('contenido');
+            var menuButton = document.querySelector('.menuGaleria');
+
+            if (!sidebarVisible) {
+                sidebar.style.left = '0';
+                content.style.marginLeft = '150px'; // Ajusta el contenido para dejar espacio al sidebar
+                
+        
+            } else {
+                sidebar.style.left = '-150px';
+                content.style.marginLeft = '0';
+            }
+
+            sidebarVisible = !sidebarVisible;
+        }
+
+        function mostrarContenido(seccion) {
+        var secciones = document.querySelectorAll('.content > div');
+        for (var i = 0; i < secciones.length; i++) {
+            secciones[i].style.display = 'none'; // Oculta todas las secciones
+        }
+
+        var contenidoSeccion = document.getElementById(seccion);
+        if (contenidoSeccion) {
+            contenidoSeccion.style.display = 'block'; // Muestra la sección seleccionada
+        }
+        
+        abrirMenuGaleria(); 
+        document.getElementById('galeriaPortada').style.display = 'none';
+    }
+    </script>
+      
+</body>
+
+</html>
