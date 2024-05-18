@@ -195,6 +195,74 @@ blockquote p {
   
   /* FIN MENÚ */
 
+  /* FORMULARIOS DE LOGIN Y REGISTRO */
+.login-register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.login-register-form {
+  background-color: rgba(255, 255, 255, 0.141);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-register-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-register-form div {
+  margin-bottom: 15px;
+}
+
+.login-register-form label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.login-register-form input[type="text"],
+.login-register-form input[type="password"],
+.login-register-form input[type="email"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #333;
+  color: white;
+  margin: 0 auto;
+  display: block;
+}
+
+.login-register-form button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+
+.login-register-form button:hover {
+  background-color: #555;
+}
+
+/* FIN FORMULARIOS DE LOGIN Y REGISTRO */
+
+
  /* TABLAS */
 
 table {
@@ -257,6 +325,15 @@ th:last-child, td:last-child {
   #trabajo:target, #viajes:target {
       display: block;
   }
+
+  #login, #register {
+    display: none;
+    padding: 20px;
+}
+
+#login:target, #register:target {
+    display: block;
+}
   
     .naver {
       padding-top: 15px;

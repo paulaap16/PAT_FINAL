@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaulaPhotography</title>
+    <link rel="stylesheet" href="formato.css">
+</head>
+<body>
+    <a href = "index.html" class="volver">Volver</a>
+    <div class="corner-container">
+        <img src="assets/images/Camara-logo.png" alt="imagen no cargada">
+        <span>PF</span>
+    </div>
+    <h1><a href = "index.html" class="volver">BLOG</a></h1>
+    <nav>
+        <ul class="contenedor">
+            <li><a href = "galeria.html" >Galería</a></li>
+            <li class="aqui"><a href = "blog.html" >Blog</a>
+            <ul class="submenu">
+                <li><a href="blog.html#trabajo">Trabajo</a></li>
+                <li><a href="blog.html#viajes">Viajes</a></li>
+              </ul>
+            </li>
+            <li><a href = "contacto.html" >Contacto</a></li>
+            <li><a href = "comprar.html" >Comprar</a>
+            <ul class="submenu">
+                <li><a href="comprar.html#sesiones">Sesiones</a></li>
+                <li><a href="comprar.html#imprimir">Imprimir</a></li>
+                <li><a href="comprar.html#servicios">Servicios</a></li>
+              </ul></li>
+            <li><a href = "inspiracion.html" >Inspiración</a></li>
+            <li><a href = "yo.html" >Quién soy</a></li>
+        </ul>
+       </nav>
+
+    <nav class="naver">
+        <a class="boton", href="#login">Login</a>
+        <a class="boton", href="#register">Register</a>
+        <br>
+    </nav>
+
+    <div class="login-register-container">
+        <section id="login">
+            <form class="login-register-form" action="login.php" method="POST">
+                <h2>Login</h2>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="register">
+            <form class="login-register-form" action="register.php" method="POST">
+                <h2>Registro</h2>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div>
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+          <div>
+            <a href="https://www.facebook.com/ejemplo" target="_blank">Facebook</a>
+            <span> | </span>
+            <a href="https://twitter.com/ejemplo" target="_blank">Twitter</a>
+            <span> | </span>
+            <a href="https://www.instagram.com/ejemplo" target="_blank">Instagram</a>
+          </div>
+        </div>
+      </footer>
+       
+</body>
+</html>
