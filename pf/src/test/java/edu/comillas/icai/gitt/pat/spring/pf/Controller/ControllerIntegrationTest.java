@@ -51,12 +51,14 @@ public class ControllerIntegrationTest {
         usuario.name = "Nombre";
         usuario.role = Role.USER;
         Token token = new Token();
+        token.usuario=usuario;
         Mockito.when(servicePedido.addArticulo(Mockito.eq(token.id), Mockito.any(ArticuloRequest.class)))
                 .thenReturn( new ArticuloResponse(URL, SIZE, CANTIDAD) );
 
         String request = "{" +
-                "\"size\":\"" + SIZE + "\"," +
+
                 "\"cantidad\":\"" + CANTIDAD + "\"," +
+                "\"size\":\"" + SIZE + "\"," +
                 "\"url\":\"" + URL + "\"}";
         String sessionCookie = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTYiLCJleHAiOjE2ODQzMjUyMDB9.LCe95pPeMGJ8b4O8XUQ1vN8mYyZkjnCAPk9rOLTNr3c";
         //When...
