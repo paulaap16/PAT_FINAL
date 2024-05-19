@@ -14,5 +14,8 @@ public record RegisterRequest(
         Role role,
         // Patrón: al menos una mayúscula, una minúscula, y un número, y de longitud más de 7
         @NotBlank @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,}$")
-        String password
+        String password,
+        @NotBlank @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,}$")
+        String passwordValidate
+
 ) {}

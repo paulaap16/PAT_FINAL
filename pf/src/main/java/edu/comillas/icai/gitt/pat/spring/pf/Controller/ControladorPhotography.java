@@ -1,23 +1,26 @@
 package edu.comillas.icai.gitt.pat.spring.pf.Controller;
 
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Historial;
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Pedido;
+
+import edu.comillas.icai.gitt.pat.spring.pf.Entity.Articulo;
+import edu.comillas.icai.gitt.pat.spring.pf.Entity.Token;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServicePedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServiceUsuario;
-import edu.comillas.icai.gitt.pat.spring.pf.model.PedidoRequest;
-import edu.comillas.icai.gitt.pat.spring.pf.model.ProfileRequest;
-import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
+import edu.comillas.icai.gitt.pat.spring.pf.model.*;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.security.Provider;
-import java.util.List;
+import java.util.Set;
 
+@RestController
 public class ControladorPhotography {
     @Autowired
     private ServiceUsuario userService;
@@ -30,18 +33,51 @@ public class ControladorPhotography {
 
     @PostMapping("/paulaphotography/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public Usuario register(@Valid @RequestBody RegisterRequest register) {  //@RequestBody en Spring se utiliza para indicar que el parámetro de un método de controlador debe
+    public ProfileResponse register(@Valid @RequestBody RegisterRequest register) {  //@RequestBody en Spring se utiliza para indicar que el parámetro de un método de controlador debe
         // ser vinculado al cuerpo de la solicitud HTTP.
         try {
             return userService.register(register);
         } catch (DataIntegrityViolationException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage(), e);
         }
+
     }
 
-    @GetMapping("/paulaphotography/user/{id}")
+    @PostMapping("/paulaphotography/user/session")
+    public ResponseEntity<Void> login(@Valid @RequestBody LoginRequest credentials) {
+        Token token = userService.login(credentials.email(), credentials.password());
+
+        if (token == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        ResponseCookie session = ResponseCookie
+                .from("session", token.id)
+                .httpOnly(true)
+                .path("/")
+                .sameSite("Strict")
+                .build();
+        return ResponseEntity.status(HttpStatus.CREATED).header(HttpHeaders.SET_COOKIE, session.toString()).build();
+    }
+
+    @DeleteMapping("/paulaphotography/user/session")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> logout(@CookieValue(value = "session", required = true) String session) {
+        Usuario usuario = userService.authentication(session);
+        if (usuario == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        userService.logout(session);
+        ResponseCookie expireSession = ResponseCookie
+                .from("session")
+                .httpOnly(true)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).header(HttpHeaders.SET_COOKIE, expireSession.toString()).build();
+    }
+
+/*
+
+    @GetMapping("/paulaphotography/user/me")
     @ResponseStatus(HttpStatus.OK)
-    public Usuario profile(@CookieValue(value = "session", required = true) String session) {
+    public ProfileResponse profile(@CookieValue(value = "session", required = true) String session) {
         Usuario user = userService.authentication(session);
         if (user == null) throw new ResponseStatusException(HttpStatus.CONFLICT);
         return userService.showUsuario(user.id);
@@ -49,47 +85,59 @@ public class ControladorPhotography {
 
     @PutMapping("/paulaphotography/user/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Usuario update(@RequestBody ProfileRequest profile, @CookieValue(value = "session", required = true) String session) {
+    public ProfileResponse update(@RequestBody ProfileRequest profile, @CookieValue(value = "session", required = true) String session) {
         Usuario user = userService.authentication(session);
         if (user == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         return userService.update(user, profile);
 
     }
 
-    @GetMapping("/paulaphotography/user/{id}/historial")
-    @ResponseStatus(HttpStatus.OK)
-    public Historial historial (@PathVariable Long userId) {
-        return userService.historial(userId);
-    }
-
     @DeleteMapping("/paulaphotography/user/{id}/delete")
     @ResponseStatus(HttpStatus.OK)
-    public void darDeBaja (@PathVariable Long userId) {
-        userService.darDeBaja(userId);
+    public void darDeBaja (@RequestBody ProfileRequest profile) {
+        userService.darDeBaja(profile);
     }
 
-    @PostMapping("/paulaphotography/pedido/nuevo")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Pedido crear(@Valid @RequestBody PedidoRequest pedidoNuevo) {  //@RequestBody en Spring se utiliza para indicar que el parámetro de un método de controlador debe
-        // ser vinculado al cuerpo de la solicitud HTTP.
-        try {
-            return pedidoService.crear(pedidoNuevo);
-        } catch (DataIntegrityViolationException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage(), e);
-        }
-    }
 
-    @PutMapping("/paulaphotography/pedido/{id}")
+ */
+
+    //PEDIDOS
+
+    @GetMapping("/paulaphotography/user/pedidoPendiente")
     @ResponseStatus(HttpStatus.OK)
-    public Pedido modificarPedido(@Valid @RequestBody PedidoRequest pedidoNuevo, @CookieValue(value = "session", required = true) String session) {
-        Pedido pedido = pedidoService.authentication(session);
-        if (pedido == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
-        return pedidoService.modificarPedido(pedido, pedidoNuevo);
-
+    public Set<ArticuloResponse> getPedidoPendiente (@CookieValue(value = "session", required = true) String session) {
+        Usuario user = userService.authentication(session);
+        return pedidoService.pedidoPendiente(user);
     }
 
+    @PostMapping("/paulaphotography/pedido/cesta")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ArticuloResponse addArticulo(@CookieValue(value = "session", required = true) String session, @Valid @RequestBody ArticuloRequest articuloNuevo) {
+        //Verifico si existe la foto.
+        return pedidoService.addArticulo(session, articuloNuevo);
+    }
 
+    @PutMapping("/paulaphotography/pedido/eliminarArticulo")
+    @ResponseStatus(HttpStatus.OK)
+    public ArticuloResponse modificarPedido(@Valid @RequestBody ArticuloRequest pedidoEliminado, @CookieValue(value = "session", required = true) String session) {
+        Usuario usuario = userService.authentication(session);
+        if(usuario == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return pedidoService.eliminarArticulo(pedidoEliminado, usuario);
+    }
 
+    @PutMapping("/paulaphotography/pedido/cesta/fin")
+    @ResponseStatus(HttpStatus.OK)
+    public void finCompra(@Valid @RequestBody CompradorRequest compradorRequest) {
+        //Verifico si existe la foto.
+        pedidoService.finCompra(compradorRequest);
+    }
 
+    @DeleteMapping("/paulaphotography/pedido/cesta/borrar")
+    @ResponseStatus(HttpStatus.OK)
+    public void eliminarCompra(@CookieValue(value = "session", required = true) String session) {
+        pedidoService.eliminarCompra(session);
+    }
 
 }
