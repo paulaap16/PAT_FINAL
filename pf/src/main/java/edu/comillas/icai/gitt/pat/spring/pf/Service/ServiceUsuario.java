@@ -36,6 +36,19 @@ public class ServiceUsuario {
         return user;
     }
 
+    public Token login(String email, String password) {
+        Usuario usuario = repoUsuario.findByEmail(email);
+        Token tokenUser=null;
+        if (usuario != null  && usuario.password.equals(password)) {
+            tokenUser = repoToken.findByUsuario(usuario);
+            return tokenUser;
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Datos incorrectos");
+        }
+
+
+    }
+
     public Usuario register (RegisterRequest registro) {
         Usuario user = repoUsuario.findByEmailAndName(registro.email(), registro.name());
         if(user!=null) {
@@ -65,6 +78,16 @@ public class ServiceUsuario {
 
         return user;
     }
+
+    public void logout(String tokenId) {
+        Usuario usuario = repoToken.findByToken(tokenId);
+        if(usuario == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciales no validas");
+        }
+        Token token = repoToken.findByUsuario(usuario);  //todos los usuarios tienen un token asignado
+        repoToken.delete(token);
+    }
+
 
     public Usuario showUsuario (Long userId) {
         Usuario user = repoUsuario.findById(userId).orElse(null);

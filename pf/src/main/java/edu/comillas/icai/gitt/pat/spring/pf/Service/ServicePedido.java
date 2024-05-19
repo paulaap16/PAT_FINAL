@@ -1,5 +1,6 @@
 package edu.comillas.icai.gitt.pat.spring.pf.Service;
 
+import edu.comillas.icai.gitt.pat.spring.pf.Entity.Articulo;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Foto;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Pedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
@@ -25,8 +26,8 @@ public class ServicePedido {
     @Autowired
     private TokenPedidoRepository repoTokenPedido;
 
-    public Pedido crear (PedidoRequest pedidoRequest) {
-        Pedido pedido = new Pedido();
+    public Articulo crear (PedidoRequest pedidoRequest) {
+        Articulo pedido = new Articulo();
         pedido.setUsuario(pedidoRequest.usuario());
         pedido.setSize(pedidoRequest.size());
         pedido.setFoto(pedidoRequest.fotos());

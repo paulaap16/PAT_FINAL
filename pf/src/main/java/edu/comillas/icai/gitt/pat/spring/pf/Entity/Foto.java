@@ -9,8 +9,6 @@ public class Foto {
 
     @Column(nullable = false) public Long precio;
 
-    @Column(nullable = false) public String tematica;
     @Column(nullable = false) public String url;
-    @Enumerated(EnumType.STRING) public Size size; //como se puede hacer pedido de varias fotos, cada foto
 
 }

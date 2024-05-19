@@ -7,7 +7,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY) public Long id;
     @Column(nullable = false, unique = true) public String name;
-    @Column(nullable = false) public String email;
+    @Column(nullable = false, unique = true) public String email;
     @Column(nullable = false, unique=true) public String password;
     @Enumerated(EnumType.STRING) public Role role;
 
