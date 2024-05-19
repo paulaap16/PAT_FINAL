@@ -9,7 +9,7 @@ function compruebaPass() {
 
 function registrarUsuario(datosJsonFormulario) {
   if (!compruebaPass()) return;
-  fetch('/paulaphotography/user', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}})
+  fetch('/paulaphotography/user', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}, credentials: 'include'}})
     .then(response => {
       if (response.ok) location.href = 'blog.html';
       else if (response.status === 409) mostrarAvisoReg('✖︎ Usuario ya registrado', 'error');
@@ -19,7 +19,7 @@ function registrarUsuario(datosJsonFormulario) {
 
 function logUsuario(datosJsonFormulario) {
   if (!compruebaPass()) return;
-  fetch('/paulaphotography/user/session', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}})
+  fetch('/paulaphotography/user/session', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}, credentials: 'include'}})
     .then(response => {
       if (response.ok) location.href = 'blog.html';
       else if (response.status === 409) mostrarAvisoLog('✖︎ Usuario ya registrado', 'error');

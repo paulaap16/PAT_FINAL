@@ -6,7 +6,7 @@ function form2json(event) {
 }
 
 function datosPago(datosJsonFormulario) {
-  fetch('/paulaphotography/pedido/cesta/fin', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}})
+  fetch('/paulaphotography/pedido/cesta/fin', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}, credentials: 'include'}})
     .then(response => {
       if (response.ok) mostrarAviso("se han registrado los datos correctamente");
       else mostrarAviso('✖︎ Error en el registro. Compruebe que los datos están bien introducidos', 'error');
