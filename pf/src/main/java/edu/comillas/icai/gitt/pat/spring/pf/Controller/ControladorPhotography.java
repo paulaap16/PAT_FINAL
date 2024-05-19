@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Set;
 
+@RestController
 public class ControladorPhotography {
     @Autowired
     private ServiceUsuario userService;
@@ -111,7 +112,7 @@ public class ControladorPhotography {
 
     @PostMapping("/paulaphotography/pedido/cesta")
     @ResponseStatus(HttpStatus.CREATED)
-    public Articulo addArticulo(@CookieValue(value = "session", required = true) String session, @Valid @RequestBody ArticuloRequest articuloNuevo) {
+    public ArticuloResponse addArticulo(@CookieValue(value = "session", required = true) String session, @Valid @RequestBody ArticuloRequest articuloNuevo) {
         //Verifico si existe la foto.
         return pedidoService.addArticulo(session, articuloNuevo);
     }

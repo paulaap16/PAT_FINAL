@@ -1,9 +1,14 @@
 package edu.comillas.icai.gitt.pat.spring.pf.Controller;
 
 
+import edu.comillas.icai.gitt.pat.spring.pf.Entity.Token;
+import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServicePedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServiceUsuario;
+
+
 import edu.comillas.icai.gitt.pat.spring.pf.model.*;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +38,7 @@ public class ControllerIntegrationTest {
     //getPedido pendiente, te dan un token , y devulves un set de articulos o error (notfound) si no hay artuculos en el pedido pendiente
     // addArticulo , recibe un articulo Resquest y se lo pasas a pedidoService, devuelve el articulo que quieres añadir
     //articuloRequest, token, tamaño , cantidad, url
-    // ArticuloResponse: url, cantidad, tamaño
+    // ArticuloResponse: cantidad , tamaño, url
     private static final String URL = "src/main/resources/assets/images/Camara-logo.png";
     private static final Long CANTIDAD = 3L;
     private static final Size SIZE = Size.MEDIUM;
@@ -45,13 +50,19 @@ public class ControllerIntegrationTest {
     void addArticuloOk() throws Exception {
 
         //Given...
-        Mockito.when(servicePedido.eliminarArticulo(Mockito.any(ArticuloRequest.class)))
+        Usuario usuario = new Usuario();
+        usuario.email= "nombre@email.com";
+        usuario.password = "aaaaaaA1";
+        usuario.name = "Nombre";
+        usuario.role = Role.USER;
+        Token token = new Token();
+        Mockito.when(servicePedido.addArticulo(Mockito.eq(token.id), Mockito.any(ArticuloRequest.class)))
                 .thenReturn( new ArticuloResponse(URL, SIZE, CANTIDAD) );
 
         String request = "{" +
-                "\"url\":\"" + URL + "\"," +
                 "\"size\":\"" + SIZE + "\"," +
-                "\"cantidad\":\"" + CANTIDAD + "\"}";
+                "\"cantidad\":\"" + CANTIDAD + "\"," +
+                "\"url\":\"" + URL + "\"}";
         //When...
         this.mockMvc
                 .perform(MockMvcRequestBuilders.post("/paulaphotography/pedido/cesta")
@@ -71,18 +82,25 @@ public class ControllerIntegrationTest {
     void modificarPedidoOk() throws Exception{
 
         //Given...
-        Mockito.when(servicePedido.eliminarArticulo(Mockito.any(ArticuloRequest.class)))
+        Usuario usuario = new Usuario();
+        usuario.email= "nombre@email.com";
+        usuario.password = "aaaaaaA1";
+        usuario.name = "Nombre";
+        usuario.role = Role.USER;
+
+        Mockito.when(servicePedido.eliminarArticulo(Mockito.any(ArticuloRequest.class),Mockito.eq(usuario)))
                 .thenReturn( new ArticuloResponse(URL, SIZE, CANTIDAD) );
 
         String request = "{" +
-                "\"url\":\"" + URL + "\"," +
                 "\"size\":\"" + SIZE + "\"," +
-                "\"cantidad\":\"" + CANTIDAD + "\"}";
+                "\"cantidad\":\"" + CANTIDAD + "\"," +
+                "\"url\":\"" + URL + "\"}";
         //When...
         this.mockMvc
                 .perform(MockMvcRequestBuilders.put("/paulaphotography/pedido/eliminarArticulo")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(request))
+
                 //Then...
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("{" +
