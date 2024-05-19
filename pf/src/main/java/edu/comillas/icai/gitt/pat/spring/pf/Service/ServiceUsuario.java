@@ -64,7 +64,7 @@ public class ServiceUsuario {
         ProfileResponse profile = new ProfileResponse(usuarioNuevo.name, usuarioNuevo.email, Role.USER);
         return profile;
     }
-
+/*
     public ProfileResponse update(Usuario user, ProfileRequest profile) { //actualizar el perfil de un usuario autenticado
         Usuario usuario = repoUsuario.findByEmailAndName(user.email, user.name);
         if(usuario == null) {
@@ -78,6 +78,8 @@ public class ServiceUsuario {
         return new ProfileResponse(user.name, user.email, Role.USER);
     }
 
+ */
+
     public void logout(String tokenId) {
         Usuario usuario = repoToken.findByToken(tokenId);
         if(usuario == null) {
@@ -87,7 +89,7 @@ public class ServiceUsuario {
         repoToken.delete(token);
     }
 
-
+/*
     public ProfileResponse showUsuario (Long userId) {
         Usuario user = repoUsuario.findById(userId).orElse(null);
         if(user==null) {
@@ -95,13 +97,18 @@ public class ServiceUsuario {
         }
         return new ProfileResponse(user.name, user.email, Role.USER);
     }
-    public void darDeBaja(Long userId) {
-        Usuario user = repoUsuario.findById(userId).orElse(null);
+
+
+
+    public void darDeBaja(ProfileRequest profile) {
+        Usuario user = repoUsuario.findByName(profile.name());
         if(user==null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Usuario no registrado");
         }
         repoUsuario.delete(user);
     }
+
+ */
 
 
 }

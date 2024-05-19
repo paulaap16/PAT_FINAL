@@ -72,7 +72,7 @@ public class ControladorPhotography {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).header(HttpHeaders.SET_COOKIE, expireSession.toString()).build();
     }
 
-
+/*
 
     @GetMapping("/paulaphotography/user/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -91,21 +91,23 @@ public class ControladorPhotography {
 
     }
 
+    @DeleteMapping("/paulaphotography/user/{id}/delete")
+    @ResponseStatus(HttpStatus.OK)
+    public void darDeBaja (@RequestBody ProfileRequest profile) {
+        userService.darDeBaja(profile);
+    }
+
+
+ */
+
+    //PEDIDOS
+
     @GetMapping("/paulaphotography/user/pedidoPendiente")
     @ResponseStatus(HttpStatus.OK)
     public Set<ArticuloResponse> getPedidoPendiente (@CookieValue(value = "session", required = true) String session) {
         Usuario user = userService.authentication(session);
         return pedidoService.pedidoPendiente(user);
     }
-
-    @DeleteMapping("/paulaphotography/user/{id}/delete")
-    @ResponseStatus(HttpStatus.OK)
-    public void darDeBaja (@PathVariable Long userId) {
-        userService.darDeBaja(userId);
-    }
-
-
-    //PEDIDOS
 
     @PostMapping("/paulaphotography/pedido/cesta")
     @ResponseStatus(HttpStatus.CREATED)
@@ -126,8 +128,15 @@ public class ControladorPhotography {
 
     @PutMapping("/paulaphotography/pedido/cesta/fin")
     @ResponseStatus(HttpStatus.OK)
-    public void finCompra(@Valid @RequestBody Token tokenUsuario) {
+    public void finCompra(@Valid @RequestBody CompradorRequest compradorRequest) {
         //Verifico si existe la foto.
-        pedidoService.finCompra(tokenUsuario.usuario);
+        pedidoService.finCompra(compradorRequest);
     }
+
+    @DeleteMapping("/paulaphotography/pedido/cesta/borrar")
+    @ResponseStatus(HttpStatus.OK)
+    public void eliminarCompra(@CookieValue(value = "session", required = true) String session) {
+        pedidoService.eliminarCompra(session);
+    }
+
 }

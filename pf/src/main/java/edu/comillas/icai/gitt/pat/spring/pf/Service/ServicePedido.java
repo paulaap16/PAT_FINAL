@@ -2,10 +2,7 @@ package edu.comillas.icai.gitt.pat.spring.pf.Service;
 
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.*;
 import edu.comillas.icai.gitt.pat.spring.pf.Repository.*;
-import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
-import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloResponse;
-import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
-import edu.comillas.icai.gitt.pat.spring.pf.model.Size;
+import edu.comillas.icai.gitt.pat.spring.pf.model.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -100,12 +97,27 @@ public class ServicePedido {
         return null;
     }
 
-    public void finCompra(Usuario user) {
+    public void finCompra(CompradorRequest compradorRequest) {
+        Usuario user = repoUsuario.findByEmailAndName(compradorRequest.email(), compradorRequest.name());
+        if(user==null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado");
+        }
         Pedido pedidoUsuario = repoPedido.findByUsuarioAndFecha(user, null);
         if (pedidoUsuario == null) {
             pedidoUsuario.setFecha(new Date());
             repoPedido.save(pedidoUsuario); // Asegúrate de guardar los cambios
         }
+    }
+
+    public void eliminarCompra(String tokenId) {
+        //la compra que se va a realizar todavia no ha finalizado definitivamente por lo que la fecha no ha sido asignada. Asi se rescata el pedido que se quiere eliminar.
+        Usuario user = repoToken.findByToken(tokenId);
+        Pedido pedidoUsuario= repoPedido.findByUsuarioAndFecha (user, null);
+        if(pedidoUsuario==null) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Pedido no existe");
+        }
+        repoPedido.delete(pedidoUsuario);
+
     }
 
 }
