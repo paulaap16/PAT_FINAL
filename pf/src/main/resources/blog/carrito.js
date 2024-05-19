@@ -20,33 +20,24 @@ function form2json(event, boton) {
   data.append('imagen', imagen);
   return JSON.stringify(Object.fromEntries(data.entries()));
 }
-
-function accederCarrito(){
+function accederCarrito() {
     fetch('/paulaphotography/user/pedidoPendiente', {
-    method: 'get',
-    headers: {'content-type': 'application/json'},
-    credentials: 'include'})
-    .then(response => {
-      if (response.ok) {
-       //modificar el html
-       response.json())
-       .then(data => {
-           if (data.length > 0) {
-               generarTablaCarrito(data);
-           } else {
-               mostrarAviso2('No hay pedidos pendientes', 'error');
-           }
-       })
-       .catch(error => {
-           console.error('Error:', error);
-           mostrarAviso2('Error al obtener los datos del carrito', 'error');
-       });
-      }
-      else mostrarAviso2('No hay pedidos pendientes', 'error');
+        method: 'get',
+        headers: {'content-type': 'application/json'}
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.length > 0) {
+            generarTablaCarrito(data);
+        } else {
+            mostrarAviso('No hay pedidos pendientes', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarAviso('Error al obtener los datos del carrito', 'error');
     });
 }
-
-
 
 function generarTablaCarrito(articulos) {
     const tabla = document.createElement('table');
@@ -58,17 +49,19 @@ function generarTablaCarrito(articulos) {
 <th>Foto</th>
 <th>Tamaño</th>
 <th>Cantidad</th>
+<th>Acciones</th>
 </tr>
     `;
     tabla.appendChild(cabecera);
 
     const cuerpo = document.createElement('tbody');
-    articulos.forEach(articulo => {
+    articulos.forEach((articulo, index) => {
         const fila = document.createElement('tr');
         fila.innerHTML = `
 <td><img src="${articulo.foto}" alt="Artículo" class="foto-articulo"></td>
 <td>${articulo.tamaño}</td>
 <td>${articulo.cantidad}</td>
+<td><button onclick="eliminarArticulo(${articulo})">Eliminar</button></td>
         `;
         cuerpo.appendChild(fila);
     });
@@ -79,7 +72,26 @@ function generarTablaCarrito(articulos) {
     contenedor.appendChild(tabla);
 }
 
-function mostrarAviso2(mensaje, tipo) {
+function eliminarArticulo(articulo) {
+    fetch(`/paulaphotography/pedido/eliminarArticulo`, {
+        method: 'delete',
+        body: articulo,
+        headers: {'content-type': 'application/json'}
+    })
+    .then(response => {
+        if (response.ok) {
+            accederCarrito(); // Recargar la tabla después de eliminar el artículo
+        } else {
+            mostrarAviso('Error al eliminar el artículo', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarAviso('Error al eliminar el artículo', 'error');
+    });
+}
+
+function mostrarAviso(mensaje, tipo) {
     const aviso = document.createElement('div');
     aviso.className = `aviso ${tipo}`;
     aviso.textContent = mensaje;
@@ -89,6 +101,7 @@ function mostrarAviso2(mensaje, tipo) {
         aviso.remove();
     }, 3000);
 }
+
 
 
 /*
