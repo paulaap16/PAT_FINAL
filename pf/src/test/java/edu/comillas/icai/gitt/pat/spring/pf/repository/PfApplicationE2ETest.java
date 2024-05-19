@@ -34,7 +34,8 @@ public class PfApplicationE2ETest {
                 "\"name\":\"" + NAME + "\"," +
                 "\"email\":\"" + EMAIL + "\"," +
                 "\"role\":\"" + Role.USER + "\"," +
-                "\"password\":\"" + PASS + "\"}";
+                "\"password\":\"" + PASS+ "\"," +
+                "\"passwordValidate\":\"" + PASS + "\"}";
 
         // When ...
         ResponseEntity<String> response = client.exchange(
