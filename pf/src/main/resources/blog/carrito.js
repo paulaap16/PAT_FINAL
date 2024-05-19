@@ -1,6 +1,6 @@
 function pedido(datosJsonFormulario) {
   if (!compruebaPass()) return;
-  fetch('/paulaphotography/pedido/nuevo', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}})
+  fetch('/paulaphotography/pedido/cesta', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}, credentials: 'include'})
     .then(response => {
       if (response.created) mostrarAviso('Foto añadida al carrito');
       else mostrarAviso('✖︎ Error al añadir el elemento al pedido', 'error');
@@ -23,7 +23,8 @@ function form2json(event, boton) {
 function accederCarrito() {
     fetch('/paulaphotography/user/pedidoPendiente', {
         method: 'get',
-        headers: {'content-type': 'application/json'}
+        headers: {'content-type': 'application/json'},
+        credentials: 'include'
     })
     .then(response => response.json())
     .then(data => {
@@ -73,10 +74,11 @@ function generarTablaCarrito(articulos) {
 }
 
 function eliminarArticulo(articulo) {
-    fetch(`/paulaphotography/pedido/eliminarArticulo`, {
-        method: 'delete',
+    fetch('/paulaphotography/pedido/eliminarArticulo', {
+        method: 'put',
         body: articulo,
-        headers: {'content-type': 'application/json'}
+        headers: {'content-type': 'application/json'},
+        credentials: 'include'
     })
     .then(response => {
         if (response.ok) {

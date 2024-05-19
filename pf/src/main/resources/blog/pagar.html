@@ -74,7 +74,7 @@
     <a href="carrito.html" class="volver">Volver al carrito</a>
     <h1>Pagar</h1>
 
-    <form>
+    <form class="informacion-pago" onsubmit="datosPago(form2json(event))">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
 
@@ -95,8 +95,9 @@
 
         <label for="cvv">CVV:</label>
         <input type="text" id="cvv" name="cvv" required><br><br>
-
+        <p id="aviso"></p>
         <input type="submit" value="Finalizar y Pagar">
+
     </form>
 
     
