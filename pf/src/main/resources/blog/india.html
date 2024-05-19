@@ -58,7 +58,7 @@
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad" placeholder="Cantidad">
+                <input type="number" id="cantidad" placeholder="Cantidad" max="5">
                 <select id="tamaño">
                     <option value="S">S</option>
                     <option value="M">M</option>
@@ -76,7 +76,7 @@
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad" placeholder="Cantidad">
+                <input type="number" id="cantidad" placeholder="Cantidad" max="5">
                 <select id="tamaño">
                     <option value="S">S</option>
                     <option value="M">M</option>
@@ -91,10 +91,14 @@
         <div class="description">
             <h2> ...</h2>
             20€
-            <div class="ranking">
-               
+            <input type="number" id="cantidad" placeholder="Cantidad" max="5">
+                <select id="tamaño">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                </select>
+                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
             </div>
-            <button class="buy-button" onclick="añadirAlCarrito(this)">Comprar</button>
         </div>
     </div>
     <div class="photo">
@@ -104,7 +108,7 @@
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad" placeholder="Cantidad">
+                <input type="number" id="cantidad" placeholder="Cantidad" max="5">
                 <select id="tamaño">
                     <option value="S">S</option>
                     <option value="M">M</option>
