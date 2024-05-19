@@ -8,6 +8,7 @@
     
 </head>
 <body>
+   <script src="checkCookie.js"></script>
     <a href = "index.html" class="volver">Volver</a>
     <div class="corner-container">
       <img src="assets/images/Camara-logo.png" alt="imagen no cargada">
@@ -18,7 +19,7 @@
     <nav>
       <ul class="contenedor">
         <li><a href = "galeria.html" >Galería</a></li>
-        <li><a href = "blog.html" >Blog</a>
+        <li><a href="#" id="blog-link">Blog</a></li>
         <ul class="submenu">
             <li><a href="blog.html#trabajo">Trabajo</a></li>
             <li><a href="blog.html#viajes">Viajes</a></li>
@@ -35,7 +36,8 @@
         <li class="aqui"><a href = "yo.html" >Quién soy</a></li>
     </ul>
        </nav>
-    
+       <button class="logout-button" id="logout-button" onclick="logout()">Logout</button>
+
     <br>
  
     <section id="yo">
