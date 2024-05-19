@@ -51,6 +51,7 @@ public class ControllerIntegrationTest {
         usuario.name = "Nombre";
         usuario.role = Role.USER;
         Token token = new Token();
+        token.usuario=usuario;
         Mockito.when(servicePedido.addArticulo(Mockito.eq(token.id), Mockito.any(ArticuloRequest.class)))
                 .thenReturn( new ArticuloResponse(URL, SIZE, CANTIDAD) );
 
