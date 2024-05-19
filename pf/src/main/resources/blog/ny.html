@@ -125,6 +125,18 @@
         </div>
     </div>
 
+    <script>
+    function mostrarFormulario(button) {
+        var formulario = button.parentElement.querySelector('.additional-fields');
+        formulario.style.display = 'block';
+        var botonComprar = button;
+        botonComprar.style.display = 'none';
+        var botonAñadir = button.parentElement.querySelector('.add-to-cart-button');
+        botonAñadir.style.display = 'block';
+    }
+
+</script>
+
 </body>
 </html>
 

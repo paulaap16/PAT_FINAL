@@ -21,14 +21,6 @@ function form2json(event, boton) {
   return JSON.stringify(Object.fromEntries(data.entries()));
 }
 
-function mostrarFormulario(button) {
-            var formulario = button.parentElement.querySelector('.additional-fields');
-            formulario.style.display = 'block';
-            var botonComprar = button;
-            botonComprar.style.display = 'none';
-            var botonAñadir = button.parentElement.querySelector('.add-to-cart-button');
-            botonAñadir.style.display = 'block';
-        }
 
 let carrito = {}; // Objeto para almacenar las imágenes seleccionadas y su cantidad
 
