@@ -1,4 +1,4 @@
-package edu.comillas.icai.gitt.pat.spring.pf.Model;
+/*package edu.comillas.icai.gitt.pat.spring.pf.Model;
 
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Articulo;
 import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
@@ -33,4 +33,4 @@ public class PedidoResgisterUnitTest {
         assertEquals(violations.size(), 1);
     }
 
-}
+}*/

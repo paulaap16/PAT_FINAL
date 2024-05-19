@@ -14,7 +14,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY) public Long id;
 
-    @OnDelete(action = OnDeleteAction.CASCADE)@ManyToMany
+    @OnDelete(action = OnDeleteAction.CASCADE)@ManyToOne
     @JoinColumn(name="usuario_id", referencedColumnName = "id", nullable = false) public Usuario usuario;  //muchas fotos en un solo pedido
     @Temporal(TemporalType.TIMESTAMP)
     public Date fecha;
