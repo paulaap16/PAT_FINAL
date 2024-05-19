@@ -74,7 +74,7 @@ public class ControladorPhotography {
 
 /*
 
-    @GetMapping("/paulaphotography/user/{id}")
+    @GetMapping("/paulaphotography/user/me")
     @ResponseStatus(HttpStatus.OK)
     public ProfileResponse profile(@CookieValue(value = "session", required = true) String session) {
         Usuario user = userService.authentication(session);
