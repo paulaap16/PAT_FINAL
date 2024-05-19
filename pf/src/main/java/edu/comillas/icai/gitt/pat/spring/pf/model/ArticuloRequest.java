@@ -7,11 +7,9 @@ import jakarta.validation.constraints.NotNull;
 public record ArticuloRequest(
         @NotNull Long cantidad,
         @NotNull Size size,
-<<<<<<< HEAD
+
         @NotBlank @NotNull String url
-=======
-        @NotBlank@NotNull String url
->>>>>>> Inés
+
 
 ) {
 
