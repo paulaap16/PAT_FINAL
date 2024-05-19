@@ -28,7 +28,7 @@ public class ServicePedido {
 
     public Articulo crear (PedidoRequest pedidoRequest) {
         Articulo pedido = new Articulo();
-        pedido.setUsuario(pedidoRequest.usuario());
+        //pedido.setUsuario(pedidoRequest.usuario());
         pedido.setSize(pedidoRequest.size());
         pedido.setFoto(pedidoRequest.fotos());
         pedido.setFecha(new Date());
