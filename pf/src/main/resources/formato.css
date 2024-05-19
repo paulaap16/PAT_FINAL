@@ -456,3 +456,20 @@ th:last-child, td:last-child {
 }
 
   
+.logout-button {
+  position: absolute;
+  top: 10px;
+  right: 60px;
+  padding: 10px 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  display: none; /* Oculto inicialmente */
+}
+
+.logout-button:hover {
+  background-color: #555;
+}
