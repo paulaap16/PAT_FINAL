@@ -9,6 +9,7 @@ import edu.comillas.icai.gitt.pat.spring.pf.Service.ServiceUsuario;
 
 import edu.comillas.icai.gitt.pat.spring.pf.model.*;
 
+import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,19 +34,13 @@ public class ControllerIntegrationTest {
      @MockBean private ServicePedido servicePedido;
      @MockBean private ServiceUsuario serviceUsuario;
 
-
-    //modificar pedido : te envian un articulo request, y lo eliminas , te devuelve el articulo eliminado
-    //getPedido pendiente, te dan un token , y devulves un set de articulos o error (notfound) si no hay artuculos en el pedido pendiente
-    // addArticulo , recibe un articulo Resquest y se lo pasas a pedidoService, devuelve el articulo que quieres añadir
-    //articuloRequest, token, tamaño , cantidad, url
-    // ArticuloResponse: cantidad , tamaño, url
     private static final String URL = "src/main/resources/assets/images/Camara-logo.png";
     private static final Long CANTIDAD = 3L;
     private static final Size SIZE = Size.MEDIUM;
 
 
-    //Este test addArticuloOk() va a verificar que cuando se accede al endpoint "/paulaphotography/pedido/cesta"
-    // con el método POST, el articulo pasado en el body de la petición se añade correctamente
+    /*Este test addArticuloOk() va a verificar que cuando se accede al endpoint "/paulaphotography/pedido/cesta"
+     con el método POST, el articulo pasado en el body de la petición se añade correctamente*/
     @Test
     void addArticuloOk() throws Exception {
 
@@ -63,11 +58,13 @@ public class ControllerIntegrationTest {
                 "\"size\":\"" + SIZE + "\"," +
                 "\"cantidad\":\"" + CANTIDAD + "\"," +
                 "\"url\":\"" + URL + "\"}";
+        String sessionCookie = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTYiLCJleHAiOjE2ODQzMjUyMDB9.LCe95pPeMGJ8b4O8XUQ1vN8mYyZkjnCAPk9rOLTNr3c";
         //When...
         this.mockMvc
                 .perform(MockMvcRequestBuilders.post("/paulaphotography/pedido/cesta")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(request))
+                        .content(request)
+                        .cookie(new Cookie("session", sessionCookie)))
                 //Then...
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.content().string("{" +
@@ -118,10 +115,11 @@ public class ControllerIntegrationTest {
                 "\"name\":\"" + "Nombre" + "\"," +
                 "\"email\":\"" + "email@email.com" + "\"," +
                 "\"role\":\"" + Role.USER + "\"," +
-                "\"password\":\"aaaaaaA1\"}";
+                "\"password\":\"aaaaaaA1\"," +
+                "\"passwordValidate\":\"aaaaaaA1\"}";
         // When ...
         this.mockMvc
-                .perform(MockMvcRequestBuilders.post("/api/users")
+                .perform(MockMvcRequestBuilders.post("/paulaphotography/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(request))
                 // Then ...
@@ -144,7 +142,7 @@ public class ControllerIntegrationTest {
                 "\"password\":\"1234\"}";
 
         // When
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/users")
+        mockMvc.perform(MockMvcRequestBuilders.post("/paulaphotography/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(request))
         // Then
@@ -153,7 +151,11 @@ public class ControllerIntegrationTest {
 
     }
 
-
+    //modificar pedido : te envian un articulo request, y lo eliminas , te devuelve el articulo eliminado
+    //getPedido pendiente, te dan un token , y devulves un set de articulos o error (notfound) si no hay artuculos en el pedido pendiente
+    // addArticulo , recibe un articulo Resquest y se lo pasas a pedidoService, devuelve el articulo que quieres añadir
+    //articuloRequest, token, tamaño , cantidad, url
+    // ArticuloResponse: cantidad , tamaño, url
 
 
 }

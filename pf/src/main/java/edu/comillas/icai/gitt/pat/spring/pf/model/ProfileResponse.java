@@ -8,6 +8,6 @@ public record ProfileResponse(
         String name,
         @NotBlank @NotNull
         String email,
-        @NotBlank @NotNull
+        @NotNull
         Role role
 ) {}
