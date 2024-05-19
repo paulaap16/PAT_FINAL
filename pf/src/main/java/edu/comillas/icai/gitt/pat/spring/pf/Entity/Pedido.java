@@ -21,11 +21,6 @@ public class Pedido {
 
     @Column(nullable = false) public Long precioTotal;
     @Column() public String direccion;
-    @Column(nullable = false) public String telefono;
-    @Column (nullable = false) public String tarjeta;
-    @Column(nullable = false) public String fechaVencimientoTarjeta;
-    @Column(nullable = false) public String cvv;
-
 
 
     public void setDireccion(String direccion) {

@@ -12,5 +12,5 @@ import java.util.Set;
 public interface ArticuloRepository extends CrudRepository<Articulo, Long> {
     Set<Articulo> findByPedido(Pedido pedido);
 
-    Articulo findByUsuarioAndSizeAndFoto(Usuario usuario, Size size, Foto foto);
+    Articulo findByCantidadAndSizeAndFoto(Usuario usuario, Size size, Foto foto);
 }

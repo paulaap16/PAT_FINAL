@@ -1,4 +1,4 @@
-/*package edu.comillas.icai.gitt.pat.spring.pf.Model;
+package edu.comillas.icai.gitt.pat.spring.pf.Model;
 
 import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.Role;
@@ -83,4 +83,4 @@ public class RegisterUnitTest {
 
     }
 
-}*/
+}

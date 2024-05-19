@@ -10,11 +10,13 @@ import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class ServiceUsuario {
     @Autowired
     private UsuarioRepository repoUsuario;
