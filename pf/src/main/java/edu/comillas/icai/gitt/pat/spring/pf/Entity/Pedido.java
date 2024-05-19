@@ -45,4 +45,9 @@ public class Pedido {
         this.usuario=usuario;
     }
 
+    public void setPrecioTotal(Long precio) {
+        this.precioTotal = precio;
+    }
+
+
 }

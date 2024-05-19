@@ -8,7 +8,6 @@ import edu.comillas.icai.gitt.pat.spring.pf.Service.ServicePedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServiceUsuario;
 import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.LoginRequest;
-import edu.comillas.icai.gitt.pat.spring.pf.model.PedidoRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.ProfileRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
 import jakarta.validation.Valid;

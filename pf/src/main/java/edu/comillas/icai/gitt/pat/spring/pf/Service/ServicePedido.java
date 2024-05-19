@@ -6,6 +6,7 @@ import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.PedidoRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.Size;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -46,6 +47,7 @@ public class ServicePedido {
         }
         return pedido;
     }
+    @Transactional
     public Articulo eliminarArticulo (ArticuloRequest articulo) {
         Usuario usuario = articulo.token().getUsuario();
         if(usuario == null){
@@ -55,6 +57,11 @@ public class ServicePedido {
         Articulo articuloEliminar = repoArticulo.findByUsuarioAndSizeAndFoto(usuario, articulo.size(), foto);
         if(articuloEliminar.getPedido().getFecha() != null){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+        Pedido pedido = articuloEliminar.getPedido();
+        pedido.setPrecioTotal(pedido.getPrecioTotal()-articuloEliminar.getPrecio());
+        if(pedido.getPrecioTotal() == 0){
+            repoPedido.delete(pedido);
         }
         repoArticulo.delete(articuloEliminar);
         return articuloEliminar;
