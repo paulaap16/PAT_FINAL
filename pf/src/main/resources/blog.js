@@ -21,7 +21,21 @@ function form2json(event, boton) {
   return JSON.stringify(Object.fromEntries(data.entries()));
 }
 
+// Verificar si el mensaje de bienvenida ya se mostró
+if (!localStorage.getItem('bienvenidaMostrada')) {
+    // Mostrar el mensaje de bienvenida
+    document.getElementById('bienvenida').classList.remove('ocultar');
 
+    // Marcar que el mensaje de bienvenida se ha mostrado
+    localStorage.setItem('bienvenidaMostrada', true);
+}
+
+// Ocultar el mensaje de bienvenida cuando se hace clic en un enlace
+document.querySelectorAll('.naver a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.getElementById('bienvenida').style.display = 'none';
+    });
+});
 
 
 

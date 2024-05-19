@@ -42,7 +42,9 @@ function añadirAlCarrito(boton) {
 
     actualizarContador();
 }
-
+function nada(nada){
+const nada = 0;
+}
 function actualizarContador() {
     const cartCounter = document.getElementById('cart-counter');
     const totalItems = Object.values(carrito).reduce((acc, cur) => acc + cur, 0);
