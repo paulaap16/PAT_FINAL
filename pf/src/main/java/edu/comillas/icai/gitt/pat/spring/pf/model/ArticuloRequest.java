@@ -5,8 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record ArticuloRequest(
-        @NotBlank@NotNull Long cantidad,
-        @NotBlank@NotNull Size size,
+        @NotNull Long cantidad,
+        @NotNull Size size,
         @NotBlank@NotNull String url
 
 ) {
