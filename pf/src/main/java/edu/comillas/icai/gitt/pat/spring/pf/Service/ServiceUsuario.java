@@ -21,8 +21,6 @@ public class ServiceUsuario {
     @Autowired
     private PedidoRepository repoPedido;
     @Autowired
-    private HistorialRepository repoHistorial;
-    @Autowired
     private TokenRepository repoToken;
 
     public Usuario authentication(String tokenId) {

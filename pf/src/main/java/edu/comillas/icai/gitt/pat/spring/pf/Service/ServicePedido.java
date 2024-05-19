@@ -3,6 +3,7 @@ package edu.comillas.icai.gitt.pat.spring.pf.Service;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.*;
 import edu.comillas.icai.gitt.pat.spring.pf.Repository.*;
 import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
+import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloResponse;
 import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.Size;
 import jakarta.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -62,7 +64,7 @@ public class ServicePedido {
     }
 
     @Transactional
-    public Articulo eliminarArticulo (ArticuloRequest articulo, Usuario usuario) {
+    public ArticuloResponse eliminarArticulo (ArticuloRequest articulo, Usuario usuario) {
         Foto foto = repoFoto.findByUrl(articulo.url());
         Articulo articuloEliminar = repoArticulo.findByUsuarioAndSizeAndFoto(usuario, articulo.size(), foto);
         if(articuloEliminar.getPedido().getFecha() != null){
@@ -74,17 +76,25 @@ public class ServicePedido {
             repoPedido.delete(pedido);
         }
         repoArticulo.delete(articuloEliminar);
-        return articuloEliminar;
+        ArticuloResponse articuloResponse = new ArticuloResponse(foto.url, articuloEliminar.size, articuloEliminar.cantidad);
+        return articuloResponse;
     }
 
-    public Set<Articulo> pedidoPendiente (Usuario user) {
+    public Set<ArticuloResponse> pedidoPendiente (Usuario user) {
+        Set<ArticuloResponse> articulosResponse = new HashSet<>();
         Set<Pedido> pedidos = repoPedido.findByUsuario(user);
         for (Pedido pedido: pedidos){
             if(pedido.getFecha() == null){
                 if(pedido.getPrecioTotal() == 0L) {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND);
                 }
-                return repoArticulo.findByPedido(pedido);
+                Set<Articulo> articulos =  repoArticulo.findByPedido(pedido);
+                for(Articulo articulo : articulos){
+                    ArticuloResponse articuloResponse = new ArticuloResponse(articulo.foto.getUrl(), articulo.size, articulo.cantidad);
+                    articulosResponse.add(articuloResponse);
+                }
+
+                return articulosResponse;
             }
         }
         return null;

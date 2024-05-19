@@ -11,4 +11,7 @@ public class Foto {
 
     @Column(nullable = false, unique = true) public String url;
 
+    public String getUrl() {
+        return url;
+    }
 }

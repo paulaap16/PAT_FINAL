@@ -6,11 +6,8 @@ import edu.comillas.icai.gitt.pat.spring.pf.Entity.Token;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServicePedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServiceUsuario;
-import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
-import edu.comillas.icai.gitt.pat.spring.pf.model.LoginRequest;
+import edu.comillas.icai.gitt.pat.spring.pf.model.*;
 
-import edu.comillas.icai.gitt.pat.spring.pf.model.ProfileRequest;
-import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -96,7 +93,7 @@ public class ControladorPhotography {
 
     @GetMapping("/paulaphotography/user/pedidoPendiente")
     @ResponseStatus(HttpStatus.OK)
-    public Set<Articulo> getPedidoPendiente (@CookieValue(value = "session", required = true) String session) {
+    public Set<ArticuloResponse> getPedidoPendiente (@CookieValue(value = "session", required = true) String session) {
         Usuario user = userService.authentication(session);
         return pedidoService.pedidoPendiente(user);
     }
@@ -119,7 +116,7 @@ public class ControladorPhotography {
 
     @PutMapping("/paulaphotography/pedido/eliminarArticulo")
     @ResponseStatus(HttpStatus.OK)
-    public Articulo modificarPedido(@Valid @RequestBody ArticuloRequest pedidoEliminado, @CookieValue(value = "session", required = true) String session) {
+    public ArticuloResponse modificarPedido(@Valid @RequestBody ArticuloRequest pedidoEliminado, @CookieValue(value = "session", required = true) String session) {
         Usuario usuario = userService.authentication(session);
         if(usuario == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
