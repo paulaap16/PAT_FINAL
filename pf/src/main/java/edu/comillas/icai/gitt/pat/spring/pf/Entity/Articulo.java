@@ -1,15 +1,11 @@
 package edu.comillas.icai.gitt.pat.spring.pf.Entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import edu.comillas.icai.gitt.pat.spring.pf.model.Size;
 import jakarta.persistence.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.*;
 @Entity
 public class Articulo {
     @Id
@@ -30,9 +26,19 @@ public class Articulo {
     public void setFoto(Foto foto) {
         this.foto=foto;
     }
-
-
-    public void setPrecioSize(Long precioSize) {
-        this.precioSize=precioSize;
+    public void setCantidad(Long cantidad) {
+        this.cantidad=cantidad;
+    }
+    public void setPedido(Pedido pedido) {
+        this.pedido=pedido;
+    }
+    public void setPrecioSize(Long cantidad, Size size, Long precioFoto) {
+        Long extra=0L;
+        if(size==Size.MEDIUM) {
+            extra=2L;
+        } else if (size==Size.LARGE) {
+            extra=4L;
+        }
+        this.precioSize=(precioFoto+extra)*cantidad;
     }
 }

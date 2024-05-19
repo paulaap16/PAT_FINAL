@@ -1,11 +1,9 @@
 package edu.comillas.icai.gitt.pat.spring.pf.Controller;
 
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Historial;
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Pedido;
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Token;
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
+import edu.comillas.icai.gitt.pat.spring.pf.Entity.*;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServicePedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServiceUsuario;
+import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.LoginRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.PedidoRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.ProfileRequest;
@@ -110,15 +108,11 @@ public class ControladorPhotography {
 
     //PEDIDOS
 
-    @PostMapping("/paulaphotography/pedido/nuevo")
+    @PostMapping("/paulaphotography/pedido/cesta")
     @ResponseStatus(HttpStatus.CREATED)
-    public Pedido crear(@Valid @RequestBody PedidoRequest pedidoNuevo) {  //@RequestBody en Spring se utiliza para indicar que el parámetro de un método de controlador debe
-        // ser vinculado al cuerpo de la solicitud HTTP.
-        try {
-            return pedidoService.crear(pedidoNuevo);
-        } catch (DataIntegrityViolationException e) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage(), e);
-        }
+    public Articulo addArticulo(@Valid @RequestBody ArticuloRequest articuloNuevo) {
+        //Verifico si existe la foto.
+        return pedidoService.addArticulo(articuloNuevo);
     }
 
     @PutMapping("/paulaphotography/pedido/{id}")
@@ -128,6 +122,13 @@ public class ControladorPhotography {
         if (pedido == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         return pedidoService.modificarPedido(pedido, pedidoNuevo);
 
+    }
+
+    @PutMapping("/paulaphotography/pedido/cesta/fin")
+    @ResponseStatus(HttpStatus.OK)
+    public void finCompra(@Valid @RequestBody Token tokenUsuario) {
+        //Verifico si existe la foto.
+        pedidoService.finCompra(tokenUsuario.usuario);
     }
 
 
