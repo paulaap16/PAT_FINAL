@@ -25,14 +25,14 @@ public class ServicePedido {
     @Autowired
     private ArticuloRepository repoArticulo;
 
-    public Articulo addArticulo (ArticuloRequest articuloRequest) {
+    public Articulo addArticulo (String tokenId, ArticuloRequest articuloRequest) {
         //verifico que existe la foto asociada a la url
         Foto foto = repoFoto.findByUrl(articuloRequest.url());
         if(foto==null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Url no asociada a ninguna foto");
         }
         //verifico si ya existe pedido: me depende de si el usuario tiene una fecha vacia o no. si la fecha no esta puesta, se crea el pedido.
-        Usuario user =articuloRequest.token().usuario;
+        Usuario user =repoToken.findByToken(tokenId);
         if(user==null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado");
         }
@@ -88,7 +88,6 @@ public class ServicePedido {
         }
         return null;
     }
-
 
     public void finCompra(Usuario user) {
         Pedido pedidoUsuario = repoPedido.findByUsuarioAndFecha(user, null);
