@@ -24,7 +24,7 @@ public class PedidoResgisterUnitTest {
     public void testValidRequest() {
         // Given ...
         ArticuloRequest articulo = new ArticuloRequest(
-                "", Size.LARGE, 1L
+                1L, Size.LARGE, ""
         );
         // When ...
         Set<ConstraintViolation<ArticuloRequest>> violations =

@@ -24,7 +24,7 @@ public class RegisterUnitTest {
         // Given ...
         RegisterRequest registro = new RegisterRequest(
                 "Nombre", "nombre@email.com",
-                Role.USER, "aaaaaaA1");
+                Role.USER, "aaaaaaA1", "aaaaaaA1");
         // When ...
         Set<ConstraintViolation<RegisterRequest>> violations =
                 validator.validate(registro);
@@ -37,12 +37,12 @@ public class RegisterUnitTest {
         // Given ...
         RegisterRequest registro = new RegisterRequest(
                 "Nombre", "nombre@email.com",
-                Role.USER, "1234");  //contraseña no cumple requerimientos
+                Role.USER, "1234", "1234");  //contraseña no cumple requerimientos
         // When ...
         Set<ConstraintViolation<RegisterRequest>> violations =
                 validator.validate(registro);
         // Then ...
-        assertTrue(violations.size() == 1); // Verificar que se obtiene una sola violación
+        assertTrue(violations.size() == 2); // Verificar que se obtiene una sola violación por cada contraseña incorrecta
         ConstraintViolation<RegisterRequest> violation = violations.iterator().next();
         assertEquals("{jakarta.validation.constraints.Pattern.message}", violation.getMessageTemplate()); // Verificar si el error es el adecuado
     }
@@ -53,7 +53,7 @@ public class RegisterUnitTest {
         // Given ...
         RegisterRequest registro = new RegisterRequest(
                 "Nombre", "email.com",
-                Role.USER, "aaaaaaA1");
+                Role.USER, "aaaaaaA1","aaaaaaA1" );
         // When ...
         Set<ConstraintViolation<RegisterRequest>> violations =
                 validator.validate(registro);
@@ -70,7 +70,7 @@ public class RegisterUnitTest {
         // Given ...
         RegisterRequest registro = new RegisterRequest(
                 "", "nombre@email.com",
-                Role.USER, "aaaaaaA1");
+                Role.USER, "aaaaaaA1", "aaaaaaA1");
         // When ...
         Set<ConstraintViolation<RegisterRequest>> violations =
                 validator.validate(registro);
