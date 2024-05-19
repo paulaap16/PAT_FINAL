@@ -16,8 +16,7 @@ public class Pedido {
 
     @OnDelete(action = OnDeleteAction.CASCADE)@ManyToMany
     @JoinColumn(name="usuario_id", referencedColumnName = "id", nullable = false) public Usuario usuario;  //muchas fotos en un solo pedido
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
     public Date fecha;
 
     @Column(nullable = false) public Long precioTotal;
@@ -45,9 +44,15 @@ public class Pedido {
         this.usuario=usuario;
     }
 
+<<<<<<< HEAD
     public void setPrecioTotal(Long precio) {
         this.precioTotal = precio;
     }
 
 
+=======
+    public void setPrecioTotal(Long precioSize) {
+        this.precioTotal=this.precioTotal+precioSize;
+    }
+>>>>>>> 69f6de24f81a164a338b16c8d044c9d43f1d77a6
 }
