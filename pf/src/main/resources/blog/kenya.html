@@ -41,9 +41,6 @@
             width: 50px; /* Establece el ancho del campo de cantidad */
             max-width: 100px; /* Establece el ancho máximo */
         }
-        .additional-fields {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -125,16 +122,5 @@
     </div>
 
     <script src="../pedido.js"></script>
-    <script>
-        function mostrarFormulario(button) {
-            var formulario = button.parentElement.querySelector('.additional-fields');
-            formulario.style.display = 'block';
-            var botonComprar = button;
-            botonComprar.style.display = 'none';
-            var botonAñadir = button.parentElement.querySelector('.add-to-cart-button');
-            botonAñadir.style.display = 'block';
-        }
-
-    </script>
 </body>
 </html>

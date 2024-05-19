@@ -38,8 +38,8 @@
        </nav>
 
     <nav class="naver">
-        <a class="boton", href="#login">Login</a>
-        <a class="boton", href="#register">Register</a>
+        <a class="boton" href="#login">Login</a>
+        <a class="boton" href="#register">Register</a>
         <br>
     </nav>
 
@@ -85,13 +85,23 @@
                     <span class="toggle-password" onclick="togglePassword('reg-passwordValidate', this)">👁️</span>
                 </div>
                 <div>
-                    <p id="aviso-register"></p>
+                    <p id="aviso-request"></p>
                     <button type="submit">Register</button>
                 </div>
             </form>
         </section>
     </div>
-    <script src="tienda.js"></script>
+    <script>
+        function togglePassword(inputId, toggleIcon) {
+            const passwordInput = document.getElementById(inputId);
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = '🙈'; // Cambia el icono al de "ocultar"
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = '👁️'; // Cambia el icono al de "mostrar"
+            }
+   </script>
 
 
     <footer>

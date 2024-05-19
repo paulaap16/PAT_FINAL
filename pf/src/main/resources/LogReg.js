@@ -12,7 +12,7 @@ function registrarUsuario(datosJsonFormulario) {
   fetch('/paulaphotography/user', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}})
     .then(response => {
       if (response.ok) location.href = 'blog.html';
-      else if (response.status === 409) mostrarAviso('✖︎ Usuario ya registrado', 'error');
+      else if (response.status === 409) mostrarAvisoReg('✖︎ Usuario ya registrado', 'error');
       else mostrarAviso('✖︎ Error en el registro. Si ya tiene una cuenta, haga un Login', 'error');
     });
 }
@@ -22,13 +22,18 @@ function logUsuario(datosJsonFormulario) {
   fetch('/paulaphotography/user/session', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}})
     .then(response => {
       if (response.ok) location.href = 'blog.html';
-      else if (response.status === 409) mostrarAviso('✖︎ Usuario ya registrado', 'error');
+      else if (response.status === 409) mostrarAvisoLog('✖︎ Usuario ya registrado', 'error');
       else mostrarAviso('✖︎ Error en el login. Si no tiene cuenta, registrese primero', 'error');
     });
 }
 
-function mostrarAviso(texto, tipo) {
-  const aviso = document.getElementById("aviso");
+function mostrarAvisoLog(texto, tipo) {
+  const aviso = document.getElementById("aviso-login");
+  aviso.textContent = texto;
+  aviso.className = tipo;
+}
+function mostrarAvisoReg(texto, tipo) {
+  const aviso = document.getElementById("aviso-registro");
   aviso.textContent = texto;
   aviso.className = tipo;
 }
@@ -39,14 +44,3 @@ function form2json(event) {
   return JSON.stringify(Object.fromEntries(data.entries()));
 }
 
-
-function togglePassword(inputId, toggleIcon) {
-    const passwordInput = document.getElementById(inputId);
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        toggleIcon.textContent = '🙈'; // Cambia el icono al de "ocultar"
-    } else {
-        passwordInput.type = 'password';
-        toggleIcon.textContent = '👁️'; // Cambia el icono al de "mostrar"
-    }
-}
