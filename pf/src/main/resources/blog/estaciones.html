@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PaulaPhotography</title>
     <link rel="stylesheet" href="../formato.css">
-    <script>carrito.js/</script>
     <style>
         .logo-container {
             position: absolute;
@@ -64,8 +63,8 @@
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad1" placeholder="Cantidad">
-                <select id="tamaño1">
+                <input type="number" id="cantidad" placeholder="Cantidad">
+                <select id="tamaño">
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -82,8 +81,8 @@
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad2" placeholder="Cantidad">
-                <select id="tamaño2">
+                <input type="number" id="cantidad" placeholder="Cantidad">
+                <select id="tamaño">
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -93,14 +92,14 @@
         </div>
     </div>
     <div class="photo">
-        <img src="../assets/images/estaciones/berlin.jpeg" alt="Foto 3">
+        <img src="../assets/images/estaciones/berlin.jpeg" alt="Foto 2">
         <div class="description">
             <h2>Berlin</h2>
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad3" placeholder="Cantidad">
-                <select id="tamaño3">
+                <input type="number" id="cantidad" placeholder="Cantidad">
+                <select id="tamaño">
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -110,14 +109,14 @@
         </div>
     </div>
     <div class="photo">
-        <img src="../assets/images/estaciones/grancentralStation.jpg" alt="Foto 4">
+        <img src="../assets/images/estaciones/grancentralStation.jpg" alt="Foto 2">
         <div class="description">
             <h2>Grand Central Station, NY</h2>
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad4" placeholder="Cantidad">
-                <select id="tamaño4">
+                <input type="number" id="cantidad" placeholder="Cantidad">
+                <select id="tamaño">
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -126,19 +125,19 @@
             </div>
         </div>
     </div>
-
+    </div>
+    <script src="../pedido.js"></script>
     <script>
-    function mostrarFormulario(button) {
-        var formulario = button.parentElement.querySelector('.additional-fields');
-        formulario.style.display = 'block';
-        var botonComprar = button;
-        botonComprar.style.display = 'none';
-        var botonAñadir = button.parentElement.querySelector('.add-to-cart-button');
-        botonAñadir.style.display = 'block';
-    }
+        function mostrarFormulario(button) {
+            var formulario = button.parentElement.querySelector('.additional-fields');
+            formulario.style.display = 'block';
+            var botonComprar = button;
+            botonComprar.style.display = 'none';
+            var botonAñadir = button.parentElement.querySelector('.add-to-cart-button');
+            botonAñadir.style.display = 'block';
+        }
 
-</script>
-
+    </script>
 
 </body>
 </html>
