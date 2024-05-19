@@ -22,14 +22,74 @@ function form2json(event, boton) {
 }
 
 function accederCarrito(){
-    fetch('/paulaphotography/user/pedidoPendiente', {method: 'get', headers: {'content-type': 'application/json'}})
+    fetch('/paulaphotography/user/pedidoPendiente', {
+    method: 'get',
+    headers: {'content-type': 'application/json'},
+    credentials: 'include'})
     .then(response => {
       if (response.ok) {
        //modificar el html
+       response.json())
+       .then(data => {
+           if (data.length > 0) {
+               generarTablaCarrito(data);
+           } else {
+               mostrarAviso2('No hay pedidos pendientes', 'error');
+           }
+       })
+       .catch(error => {
+           console.error('Error:', error);
+           mostrarAviso2('Error al obtener los datos del carrito', 'error');
+       });
       }
-      else mostrarAviso('No hay pedidos pendientes', 'error');
+      else mostrarAviso2('No hay pedidos pendientes', 'error');
     });
 }
+
+
+
+function generarTablaCarrito(articulos) {
+    const tabla = document.createElement('table');
+    tabla.classList.add('tabla-carrito');
+
+    const cabecera = document.createElement('thead');
+    cabecera.innerHTML = `
+<tr>
+<th>Foto</th>
+<th>Tamaño</th>
+<th>Cantidad</th>
+</tr>
+    `;
+    tabla.appendChild(cabecera);
+
+    const cuerpo = document.createElement('tbody');
+    articulos.forEach(articulo => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+<td><img src="${articulo.foto}" alt="Artículo" class="foto-articulo"></td>
+<td>${articulo.tamaño}</td>
+<td>${articulo.cantidad}</td>
+        `;
+        cuerpo.appendChild(fila);
+    });
+    tabla.appendChild(cuerpo);
+
+    const contenedor = document.getElementById('lista-compra-contenedor');
+    contenedor.innerHTML = ''; // Limpiar contenido anterior
+    contenedor.appendChild(tabla);
+}
+
+function mostrarAviso2(mensaje, tipo) {
+    const aviso = document.createElement('div');
+    aviso.className = `aviso ${tipo}`;
+    aviso.textContent = mensaje;
+    document.body.appendChild(aviso);
+
+    setTimeout(() => {
+        aviso.remove();
+    }, 3000);
+}
+
 
 /*
 let carrito = {}; // Objeto para almacenar las imágenes seleccionadas y su cantidad
