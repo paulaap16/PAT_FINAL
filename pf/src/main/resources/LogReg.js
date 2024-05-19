@@ -44,14 +44,3 @@ function form2json(event) {
   return JSON.stringify(Object.fromEntries(data.entries()));
 }
 
-
-function togglePassword(inputId, toggleIcon) {
-    const passwordInput = document.getElementById(inputId);
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        toggleIcon.textContent = '🙈'; // Cambia el icono al de "ocultar"
-    } else {
-        passwordInput.type = 'password';
-        toggleIcon.textContent = '👁️'; // Cambia el icono al de "mostrar"
-    }
-}
