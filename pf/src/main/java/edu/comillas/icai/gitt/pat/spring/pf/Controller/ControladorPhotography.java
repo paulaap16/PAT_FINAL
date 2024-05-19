@@ -118,7 +118,7 @@ public class ControladorPhotography {
         return pedidoService.addArticulo(session, articuloNuevo);
     }
 
-    @PutMapping("/paulaphotography/pedido/{id}")
+    @PutMapping("/paulaphotography/pedido/eliminarArticulo")
     @ResponseStatus(HttpStatus.OK)
     public Articulo modificarPedido(@Valid @RequestBody ArticuloRequest pedidoEliminado, @CookieValue(value = "session", required = true) String session) {
         return pedidoService.eliminarArticulo(pedidoEliminado);
