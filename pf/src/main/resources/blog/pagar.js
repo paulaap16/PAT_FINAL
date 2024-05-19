@@ -6,7 +6,6 @@ function form2json(event) {
 }
 
 function datosPago(datosJsonFormulario) {
-  if (!compruebaPass()) return;
   fetch('/paulaphotography/pedido/cesta/fin', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}})
     .then(response => {
       if (response.ok) mostrarAviso("se han registrado los datos correctamente");

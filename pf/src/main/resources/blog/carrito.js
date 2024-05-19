@@ -104,8 +104,41 @@ function mostrarAviso(mensaje, tipo) {
     }, 3000);
 }
 
+//  FINALIZAR O ELIMINAR PEDIDO
 
+function form2json2(event) {
+  event.preventDefault();
+  const data = new FormData(event.target);
+  return JSON.stringify(Object.fromEntries(data.entries()));
+}
 
+function mostrarAviso3(texto) {
+  const aviso = document.getElementById("avisos");
+  aviso.textContent = texto;
+  aviso.className = tipo;
+}
+
+function cancelarCompra() {
+  fetch('/paulaphotography/pedido/cesta/fin', {method: 'post' headers: {'content-type': 'application/json'}, credentials: 'include'})
+    .then(response => {
+      if (response.ok) {
+        document.getElementById('lista-compra-contenedor').innerHTML = '';
+        mostrarAviso3("se ha eliminado todo el carrito");
+      }
+      else mostrarAviso('✖︎ Error en el registro. Compruebe que los datos están bien introducidos', 'error');
+    });
+}
+
+function finalizarCompra() {
+  fetch('/paulaphotography/pedido/cesta/fin', {method: 'post', headers: {'content-type': 'application/json'}, credentials: 'include'})
+    .then(response => {
+      if (response.ok) {
+        document.getElementById('lista-compra-contenedor').innerHTML = '';
+        location.href = 'pagar.html';
+      }
+      else mostrarAviso('✖︎ Error en el registro. Compruebe que los datos están bien introducidos', 'error');
+    });
+}
 /*
 let carrito = {}; // Objeto para almacenar las imágenes seleccionadas y su cantidad
 
