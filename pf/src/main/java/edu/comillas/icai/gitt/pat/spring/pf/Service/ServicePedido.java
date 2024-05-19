@@ -28,7 +28,7 @@ public class ServicePedido {
     @Autowired
     private ArticuloRepository repoArticulo;
 
-    public Articulo addArticulo (String tokenId, ArticuloRequest articuloRequest) {
+    public ArticuloResponse addArticulo (String tokenId, ArticuloRequest articuloRequest) {
         //verifico que existe la foto asociada a la url
         Foto foto = repoFoto.findByUrl(articuloRequest.url());
         if(foto==null) {
@@ -60,7 +60,8 @@ public class ServicePedido {
             articulo.setPedido(pedidoUsuario);
         }
         repoArticulo.save(articulo);
-        return articulo;
+        ArticuloResponse articuloResponse = new ArticuloResponse(foto.url, articulo.size,articulo.cantidad);
+        return articuloResponse;
     }
 
     @Transactional
