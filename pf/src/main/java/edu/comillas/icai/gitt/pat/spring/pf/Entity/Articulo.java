@@ -11,7 +11,7 @@ public class Articulo {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY) public Long id;
     @OnDelete(action = OnDeleteAction.CASCADE)@ManyToOne@JoinColumn(name="pedido_id", referencedColumnName = "id", nullable = false) public Pedido pedido;
-    @OnDelete(action = OnDeleteAction.CASCADE)@ManyToMany@JoinColumn(name="foto_id", referencedColumnName = "id", nullable = false) public Foto foto;  //muchas fotos en un solo pedido
+    @OnDelete(action = OnDeleteAction.CASCADE)@ManyToOne@JoinColumn(name="foto_id", referencedColumnName = "id", nullable = false) public Foto foto;  //muchas fotos en un solo pedido
 
     @Enumerated(EnumType.STRING)@Column(nullable=false) public Size size;
 
