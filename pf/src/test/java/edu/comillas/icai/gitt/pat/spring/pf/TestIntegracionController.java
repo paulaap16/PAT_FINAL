@@ -1,4 +1,4 @@
-package edu.comillas.icai.gitt.pat.spring.pf.UsuarioTest;
+package edu.comillas.icai.gitt.pat.spring.pf;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
