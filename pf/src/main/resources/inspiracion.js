@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const grayscale = document.getElementById("grayscale").checked;
         const blur = document.getElementById("blur").value;
 
-        let apiUrl = `https://picsum.photos/${width}/${height}`;
+        let apiUrl = 'https://picsum.photos/${width}/${height}';
 
         if (grayscale) {
             apiUrl += "?grayscale";
