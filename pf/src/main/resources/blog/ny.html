@@ -31,6 +31,16 @@
             font-size: 16px;
             display: none;
         }
+        .buy-button, .add-to-cart-button {
+            width: 70px;
+            margin:  10px auto 0;
+            display: block;
+            text-align: center;
+        }
+        #cantidad {
+            width: 50px; /* Establece el ancho del campo de cantidad */
+            max-width: 100px; /* Establece el ancho máximo */
+        }
     </style>
 </head>
 <body>
@@ -46,10 +56,16 @@
         <div class="description">
             <h2>Views</h2>
             20€
-            <div class="ranking">
-                
+            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+            <div class="additional-fields">
+                <input type="number" id="cantidad" placeholder="Cantidad">
+                <select id="tamaño">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                </select>
+                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
             </div>
-            <button class="buy-button" onclick="añadirAlCarrito(this)">Comprar</button>
         </div>
     </div>
     
@@ -58,10 +74,16 @@
         <div class="description">
             <h2>Brooklyn Bridge</h2>
             20€
-            <div class="ranking">
-                
+            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+            <div class="additional-fields">
+                <input type="number" id="cantidad" placeholder="Cantidad">
+                <select id="tamaño">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                </select>
+                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
             </div>
-            <button class="buy-button" onclick="añadirAlCarrito(this)">Comprar</button>
         </div>
     </div>
     <div class="photo">
@@ -69,10 +91,16 @@
         <div class="description">
             <h2>Liberty Statue</h2>
             20€
-            <div class="ranking">
-                
+            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+            <div class="additional-fields">
+                <input type="number" id="cantidad" placeholder="Cantidad">
+                <select id="tamaño">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                </select>
+                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
             </div>
-            <button class="buy-button" onclick="añadirAlCarrito(this)">Comprar</button>
         </div>
     </div>
     <div class="photo">
@@ -80,15 +108,21 @@
         <div class="description">
             <h2>Dumbo</h2>
             20€
-            <div class="ranking">
-                
+            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+            <div class="additional-fields">
+                <input type="number" id="cantidad" placeholder="Cantidad">
+                <select id="tamaño">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                </select>
+                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
             </div>
-            <button class="buy-button" onclick="añadirAlCarrito(this)">Comprar</button>
         </div>
     </div>
     </div>
 
-    <script src="carrito.js"></script>
+    <script src="../pedido.js"></script>
 
 </body>
 </html>
