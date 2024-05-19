@@ -13,3 +13,9 @@ function datosPago(datosJsonFormulario) {
       else mostrarAviso('✖︎ Error en el registro. Compruebe que los datos están bien introducidos', 'error');
     });
 }
+
+function mostrarAviso(texto) {
+  const aviso = document.getElementById("aviso");
+  aviso.textContent = texto;
+  aviso.className = tipo;
+}
