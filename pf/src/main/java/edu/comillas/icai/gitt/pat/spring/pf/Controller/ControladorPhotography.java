@@ -113,9 +113,9 @@ public class ControladorPhotography {
 
     @PostMapping("/paulaphotography/pedido/cesta")
     @ResponseStatus(HttpStatus.CREATED)
-    public Articulo addArticulo(@Valid @RequestBody ArticuloRequest articuloNuevo) {
+    public Articulo addArticulo(@CookieValue(value = "session", required = true) String session, @Valid @RequestBody ArticuloRequest articuloNuevo) {
         //Verifico si existe la foto.
-        return pedidoService.addArticulo(articuloNuevo);
+        return pedidoService.addArticulo(session, articuloNuevo);
     }
 
     @PutMapping("/paulaphotography/pedido/{id}")

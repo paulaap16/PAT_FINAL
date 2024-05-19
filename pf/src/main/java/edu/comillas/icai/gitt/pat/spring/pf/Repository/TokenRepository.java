@@ -12,6 +12,7 @@ public interface TokenRepository extends CrudRepository<Token, Long> {
     Usuario findByToken (String token_id);
 
     Token findById(String id);
+
     Token findByUsuario( Usuario usuario);
 }
 
