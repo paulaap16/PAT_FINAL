@@ -6,11 +6,8 @@ import edu.comillas.icai.gitt.pat.spring.pf.Entity.Token;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServicePedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServiceUsuario;
-import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
-import edu.comillas.icai.gitt.pat.spring.pf.model.LoginRequest;
+import edu.comillas.icai.gitt.pat.spring.pf.model.*;
 
-import edu.comillas.icai.gitt.pat.spring.pf.model.ProfileRequest;
-import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -35,7 +32,7 @@ public class ControladorPhotography {
 
     @PostMapping("/paulaphotography/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public Usuario register(@Valid @RequestBody RegisterRequest register) {  //@RequestBody en Spring se utiliza para indicar que el parámetro de un método de controlador debe
+    public ProfileResponse register(@Valid @RequestBody RegisterRequest register) {  //@RequestBody en Spring se utiliza para indicar que el parámetro de un método de controlador debe
         // ser vinculado al cuerpo de la solicitud HTTP.
         try {
             return userService.register(register);
@@ -79,7 +76,7 @@ public class ControladorPhotography {
 
     @GetMapping("/paulaphotography/user/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Usuario profile(@CookieValue(value = "session", required = true) String session) {
+    public ProfileResponse profile(@CookieValue(value = "session", required = true) String session) {
         Usuario user = userService.authentication(session);
         if (user == null) throw new ResponseStatusException(HttpStatus.CONFLICT);
         return userService.showUsuario(user.id);
@@ -87,7 +84,7 @@ public class ControladorPhotography {
 
     @PutMapping("/paulaphotography/user/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Usuario update(@RequestBody ProfileRequest profile, @CookieValue(value = "session", required = true) String session) {
+    public ProfileResponse update(@RequestBody ProfileRequest profile, @CookieValue(value = "session", required = true) String session) {
         Usuario user = userService.authentication(session);
         if (user == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         return userService.update(user, profile);
