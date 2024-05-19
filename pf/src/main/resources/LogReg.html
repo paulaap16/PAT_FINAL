@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PaulaPhotography</title>
     <link rel="stylesheet" href="formato.css">
+  
 </head>
 <body>
     <a href = "index.html" class="volver">Volver</a>
@@ -44,43 +45,65 @@
 
     <div class="login-register-container">
         <section id="login">
-            <form class="login-register-form" action="login.php" method="POST">
+            <form class="login-register-form" onsubmit="logUsuario(form2json(event))">
                 <h2>Login</h2>
                 <div>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="login-email">Email:</label>
+                    <input type="text" id="login-email" name="email" required>
+                </div>
+                <div class="password-container">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <span class="toggle-password" onclick="togglePassword('login-password', this)">👁️</span>
                 </div>
                 <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div>
+                    <p id="aviso-login"></p>
                     <button type="submit">Login</button>
                 </div>
             </form>
         </section>
 
         <section id="register">
-            <form class="login-register-form" action="register.php" method="POST">
+            <form class="login-register-form" onsubmit="registrarUsuario(form2json(event))">
                 <h2>Registro</h2>
                 <div>
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="reg-username">Username:</label>
+                    <input type="text" id="reg-username" name="username" required>
                 </div>
                 <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="reg-email">Email:</label>
+                    <input type="email" id="reg-email" name="email" required>
+                </div>
+                <div class="password-container">
+                    <label for="reg-password">Password:</label>
+                    <input type="password" id="reg-password" name="password" required>
+                    <span class="toggle-password" onclick="togglePassword('reg-password', this)">👁️</span>
+                </div>
+                <div class="password-container">
+                    <label for="reg-passwordValidate">Confirm Password:</label>
+                    <input type="password" id="reg-passwordValidate" name="passwordValidate" required>
+                    <span class="toggle-password" onclick="togglePassword('reg-passwordValidate', this)">👁️</span>
                 </div>
                 <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div>
+                    <p id="aviso-register"></p>
                     <button type="submit">Register</button>
                 </div>
             </form>
         </section>
     </div>
+
+    <script>
+        function togglePassword(inputId, toggleIcon) {
+            const passwordInput = document.getElementById(inputId);
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = '🙈'; // Cambia el icono al de "ocultar"
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = '👁️'; // Cambia el icono al de "mostrar"
+            }
+        }
+    </script>
 
     <footer>
         <div class="footer-content">
