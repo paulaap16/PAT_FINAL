@@ -62,19 +62,15 @@ public class ServicePedido {
     }
 
     @Transactional
-    public Articulo eliminarArticulo (ArticuloRequest articulo) {
-        Usuario usuario = articulo.token().getUsuario();
-        if(usuario == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+    public Articulo eliminarArticulo (ArticuloRequest articulo, Usuario usuario) {
         Foto foto = repoFoto.findByUrl(articulo.url());
         Articulo articuloEliminar = repoArticulo.findByUsuarioAndSizeAndFoto(usuario, articulo.size(), foto);
         if(articuloEliminar.getPedido().getFecha() != null){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
         Pedido pedido = articuloEliminar.getPedido();
-        pedido.setPrecioTotal(pedido.getPrecioTotal()-articuloEliminar.getPrecio());
-        if(pedido.getPrecioTotal() == 0){
+        pedido.cambiarPrecioTotal(pedido.getPrecioTotal()-articuloEliminar.getPrecio());
+        if(pedido.getPrecioTotal() == 0L){
             repoPedido.delete(pedido);
         }
         repoArticulo.delete(articuloEliminar);
@@ -85,7 +81,7 @@ public class ServicePedido {
         Set<Pedido> pedidos = repoPedido.findByUsuario(user);
         for (Pedido pedido: pedidos){
             if(pedido.getFecha() == null){
-                if(pedido.getPrecioTotal() == 0) {
+                if(pedido.getPrecioTotal() == 0L) {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND);
                 }
                 return repoArticulo.findByPedido(pedido);

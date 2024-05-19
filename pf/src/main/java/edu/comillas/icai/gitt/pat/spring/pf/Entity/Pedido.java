@@ -44,15 +44,12 @@ public class Pedido {
         this.usuario=usuario;
     }
 
-<<<<<<< HEAD
-    public void setPrecioTotal(Long precio) {
+    public void cambiarPrecioTotal(Long precio) {
         this.precioTotal = precio;
     }
 
 
-=======
     public void setPrecioTotal(Long precioSize) {
         this.precioTotal=this.precioTotal+precioSize;
     }
->>>>>>> 69f6de24f81a164a338b16c8d044c9d43f1d77a6
 }
