@@ -35,4 +35,8 @@ public class Articulo {
     public void setPrecioSize(Long precioSize) {
         this.precioSize=precioSize;
     }
+
+    public Pedido getPedido(){
+        return this.pedido;
+    }
 }

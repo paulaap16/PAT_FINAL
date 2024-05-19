@@ -1,11 +1,12 @@
 package edu.comillas.icai.gitt.pat.spring.pf.Controller;
 
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Historial;
+import edu.comillas.icai.gitt.pat.spring.pf.Entity.Articulo;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Pedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Token;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServicePedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Service.ServiceUsuario;
+import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.LoginRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.PedidoRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.ProfileRequest;
@@ -20,8 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.security.Provider;
-import java.util.List;
+import java.util.Set;
 
 public class ControladorPhotography {
     @Autowired
@@ -95,10 +95,11 @@ public class ControladorPhotography {
 
     }
 
-    @GetMapping("/paulaphotography/user/{id}/historial")
+    @GetMapping("/paulaphotography/user/{id}/pedidoPendiente")
     @ResponseStatus(HttpStatus.OK)
-    public Historial historial (@PathVariable Long userId) {
-        return userService.historial(userId);
+    public Set<Articulo> getPedidoPendiente (@PathVariable Token token) {
+        Usuario user = token.getUsuario();
+        return pedidoService.pedidoPendiente(user);
     }
 
     @DeleteMapping("/paulaphotography/user/{id}/delete")
@@ -123,15 +124,8 @@ public class ControladorPhotography {
 
     @PutMapping("/paulaphotography/pedido/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Pedido modificarPedido(@Valid @RequestBody PedidoRequest pedidoNuevo, @CookieValue(value = "session", required = true) String session) {
-        Pedido pedido = pedidoService.authentication(session);
-        if (pedido == null) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
-        return pedidoService.modificarPedido(pedido, pedidoNuevo);
-
+    public Articulo modificarPedido(@Valid @RequestBody ArticuloRequest pedidoEliminado, @CookieValue(value = "session", required = true) String session) {
+        return pedidoService.eliminarArticulo(pedidoEliminado);
     }
-
-
-
-
 
 }

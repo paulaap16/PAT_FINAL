@@ -10,7 +10,4 @@ import java.util.Set;
 public interface PedidoRepository extends CrudRepository<Pedido, Long> {
 
     Set<Pedido> findByUsuario (Usuario usuario);
-
-
-
 }

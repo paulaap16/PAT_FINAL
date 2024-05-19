@@ -1,6 +1,5 @@
 package edu.comillas.icai.gitt.pat.spring.pf.Service;
 
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Historial;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Pedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Token;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
@@ -12,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ServiceUsuario {
@@ -96,24 +94,6 @@ public class ServiceUsuario {
         }
         return user;
     }
-
-    public Historial historial(Long userId) {
-        Usuario user = repoUsuario.findById(userId).orElse(null);
-        if(user==null) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Usuario no registrado");
-        }
-
-        Set<Pedido> pedidos = repoPedido.findByUsuario(user);
-        Historial historial = new Historial();
-        historial.setUsuario(user);
-        Set<Pedido> pedidoSet = new HashSet<>(pedidos);
-        historial.setPedidos(pedidoSet);
-
-        return historial;
-
-    }
-
-
     public void darDeBaja(Long userId) {
         Usuario user = repoUsuario.findById(userId).orElse(null);
         if(user==null) {

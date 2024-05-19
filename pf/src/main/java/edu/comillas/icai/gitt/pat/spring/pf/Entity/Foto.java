@@ -9,6 +9,6 @@ public class Foto {
 
     @Column(nullable = false) public Long precio;
 
-    @Column(nullable = false) public String url;
+    @Column(nullable = false, unique = true) public String url;
 
 }

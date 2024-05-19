@@ -33,6 +33,14 @@ public class Pedido {
         this.fecha=fecha;
     }
 
+    public Date getFecha() {
+        return this.fecha;
+    }
+
+    public Long getPrecioTotal() {
+        return this.precioTotal;
+    }
+
     public void setUsuario(Usuario usuario) {
         this.usuario=usuario;
     }

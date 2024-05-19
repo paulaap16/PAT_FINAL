@@ -1,12 +1,11 @@
 package edu.comillas.icai.gitt.pat.spring.pf.Service;
 
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Articulo;
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Foto;
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Pedido;
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
+import edu.comillas.icai.gitt.pat.spring.pf.Entity.*;
 import edu.comillas.icai.gitt.pat.spring.pf.Repository.*;
+import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.PedidoRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
+import edu.comillas.icai.gitt.pat.spring.pf.model.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,9 +21,7 @@ public class ServicePedido {
     @Autowired
     private PedidoRepository repoPedido;
     @Autowired
-    private HistorialRepository repoHistorial;
-    @Autowired
-    private TokenPedidoRepository repoTokenPedido;
+    private ArticuloRepository repoArticulo;
 
     public Articulo crear (PedidoRequest pedidoRequest) {
         Articulo pedido = new Articulo();
@@ -49,19 +46,31 @@ public class ServicePedido {
         }
         return pedido;
     }
-    public Pedido modificarPedido (Pedido pedido, PedidoRequest pedidoNuevo) {
-        pedido.setDireccion(pedidoNuevo.direccion());
-        pedido.setFoto(pedidoNuevo.fotos());
-        pedido.setSize(pedidoNuevo.size());
-        repoPedido.save(pedido);
-
-        return pedido;
+    public Articulo eliminarArticulo (ArticuloRequest articulo) {
+        Usuario usuario = articulo.token().getUsuario();
+        if(usuario == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        Foto foto = repoFoto.findByUrl(articulo.url());
+        Articulo articuloEliminar = repoArticulo.findByUsuarioAndSizeAndFoto(usuario, articulo.size(), foto);
+        if(articuloEliminar.getPedido().getFecha() != null){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+        repoArticulo.delete(articuloEliminar);
+        return articuloEliminar;
     }
 
-    
-
-
-
-
+    public Set<Articulo> pedidoPendiente (Usuario user) {
+        Set<Pedido> pedidos = repoPedido.findByUsuario(user);
+        for (Pedido pedido: pedidos){
+            if(pedido.getFecha() == null){
+                if(pedido.getPrecioTotal() == 0) {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+                }
+                return repoArticulo.findByPedido(pedido);
+            }
+        }
+        return null;
+    }
 
 }
