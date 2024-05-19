@@ -45,4 +45,8 @@ public class Articulo {
     public Pedido getPedido(){
         return this.pedido;
     }
+
+    public Long getPrecio(){
+        return this.precioSize;
+    }
 }

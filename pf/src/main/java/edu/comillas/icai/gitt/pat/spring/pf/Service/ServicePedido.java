@@ -5,6 +5,7 @@ import edu.comillas.icai.gitt.pat.spring.pf.Repository.*;
 import edu.comillas.icai.gitt.pat.spring.pf.model.ArticuloRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.Size;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -60,17 +61,17 @@ public class ServicePedido {
         return articulo;
     }
 
-
-
-    public Articulo eliminarArticulo (ArticuloRequest articulo) {
-        Usuario usuario = articulo.token().getUsuario();
-        if(usuario == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+    @Transactional
+    public Articulo eliminarArticulo (ArticuloRequest articulo, Usuario usuario) {
         Foto foto = repoFoto.findByUrl(articulo.url());
         Articulo articuloEliminar = repoArticulo.findByUsuarioAndSizeAndFoto(usuario, articulo.size(), foto);
         if(articuloEliminar.getPedido().getFecha() != null){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+        Pedido pedido = articuloEliminar.getPedido();
+        pedido.cambiarPrecioTotal(pedido.getPrecioTotal()-articuloEliminar.getPrecio());
+        if(pedido.getPrecioTotal() == 0L){
+            repoPedido.delete(pedido);
         }
         repoArticulo.delete(articuloEliminar);
         return articuloEliminar;
@@ -80,7 +81,7 @@ public class ServicePedido {
         Set<Pedido> pedidos = repoPedido.findByUsuario(user);
         for (Pedido pedido: pedidos){
             if(pedido.getFecha() == null){
-                if(pedido.getPrecioTotal() == 0) {
+                if(pedido.getPrecioTotal() == 0L) {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND);
                 }
                 return repoArticulo.findByPedido(pedido);

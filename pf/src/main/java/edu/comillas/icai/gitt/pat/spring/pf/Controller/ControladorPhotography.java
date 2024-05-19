@@ -43,7 +43,6 @@ public class ControladorPhotography {
             throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage(), e);
         }
 
-
     }
 
     @PostMapping("/paulaphotography/user/session")
@@ -95,10 +94,10 @@ public class ControladorPhotography {
 
     }
 
-    @GetMapping("/paulaphotography/user/{id}/pedidoPendiente")
+    @GetMapping("/paulaphotography/user/pedidoPendiente")
     @ResponseStatus(HttpStatus.OK)
-    public Set<Articulo> getPedidoPendiente (@PathVariable Token token) {
-        Usuario user = token.getUsuario();
+    public Set<Articulo> getPedidoPendiente (@CookieValue(value = "session", required = true) String session) {
+        Usuario user = userService.authentication(session);
         return pedidoService.pedidoPendiente(user);
     }
 
@@ -118,10 +117,14 @@ public class ControladorPhotography {
         return pedidoService.addArticulo(session, articuloNuevo);
     }
 
-    @PutMapping("/paulaphotography/pedido/{id}")
+    @PutMapping("/paulaphotography/pedido/eliminarArticulo")
     @ResponseStatus(HttpStatus.OK)
     public Articulo modificarPedido(@Valid @RequestBody ArticuloRequest pedidoEliminado, @CookieValue(value = "session", required = true) String session) {
-        return pedidoService.eliminarArticulo(pedidoEliminado);
+        Usuario usuario = userService.authentication(session);
+        if(usuario == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return pedidoService.eliminarArticulo(pedidoEliminado, usuario);
     }
 
     @PutMapping("/paulaphotography/pedido/cesta/fin")
