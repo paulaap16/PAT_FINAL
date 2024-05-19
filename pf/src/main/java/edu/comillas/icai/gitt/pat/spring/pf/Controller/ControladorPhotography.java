@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Set;
 
+@RestController
 public class ControladorPhotography {
     @Autowired
     private ServiceUsuario userService;
