@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compra</title>
+    <link rel="stylesheet" href="../formato.css">
+    <script>carrito.js/</script>
+    <style>
+        #carrito img {
+            max-width: 400px; 
+            height: auto; 
+            margin-right: 10px; 
+        }
+    </style>
+</head>
+<body>
+    <a href="../blog.html" class="volver">Volver</a>
+    <h1>Carrito de la Compra</h1>
+
+    <div id="carrito">
+        
+    </div>
+
+    <div class="contenedorBotones">
+        <button class="botonCompra" onclick="cancelarCompra()">Cancelar Compra</button>
+        <button class="botonCompra" onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
+
+    <div id="precioTotal"></div>
+
+    <script>
+        let carrito = JSON.parse(localStorage.getItem('carrito'));
+
+        const carritoDiv = document.getElementById('carrito');
+
+        if (carrito) {
+            for (const imagen in carrito) {
+                const cantidad = carrito[imagen];
+                const imagenElement = document.createElement('div');
+                imagenElement.innerHTML = `<img src="${imagen}" alt="Imagen">
+                            <input type="number" value="${cantidad}" min="1" max="5" onchange="actualizarCantidad('${imagen}', this.value)">
+                            <label id="precio-${imagen}">Precio: 20€ * ${cantidad}</label>
+                            <button onclick="eliminarProducto('${imagen}')">Eliminar</button>`;
+                carritoDiv.appendChild(imagenElement);
+            }
+        } else {
+            carritoDiv.textContent = 'No hay productos en el carrito';
+        }
+
+        function actualizarCantidad(imagen, nuevaCantidad) {
+            // Actualizar la cantidad en el carrito
+            carrito[imagen] = parseInt(nuevaCantidad);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            const precioLabel = document.getElementById(`precio-${imagen}`);
+            const nuevoPrecio = 20 * parseInt(nuevaCantidad);
+            precioLabel.textContent = `Precio: 20€ * ${nuevaCantidad} = ${nuevoPrecio}€`;
+        }
+
+
+
+        function cancelarCompra() {
+            localStorage.removeItem('carrito');
+            location.reload();
+        }
+
+        function finalizarCompra() {
+            let precioTotal = 0;
+            for (const imagen in carrito) {
+                const cantidad = carrito[imagen];
+                precioTotal += 20 * cantidad; 
+            }
+            const precioTotalElement = document.getElementById('precioTotal');
+            precioTotalElement.innerHTML = `<h1>TOTAL: ${precioTotal}€</h1>`;
+        }
+
+
+        function eliminarProducto(imagen) {
+            delete carrito[imagen];
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            location.reload();
+        }
+    </script>
+</body>
+</html>

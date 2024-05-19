@@ -8,6 +8,25 @@
     <title>PaulaPhotography</title>
     <link rel="stylesheet" href="formato.css">
     <script>LogReg.js/</script>
+    <style>
+        .boton {
+            display: inline-block;
+            padding: 13px 50px; /* Ajusta el tamaño del botón según sea necesario */
+            margin: 1px; /* Ajusta el margen según sea necesario */
+            background-color: #555; /* Cambia el color de fondo a más claro */
+            color: #ffffff; /* Cambia el color del texto a oscuro */
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px; /* Ajusta el tamaño del texto según sea necesario */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .boton:hover {
+            background-color: #ccc; /* Cambia el color de fondo al pasar el ratón por encima */
+        }
+    </style>
 </head>
 <body>
     <a href = "index.html" class="volver">Volver</a>
@@ -49,7 +68,7 @@
                 <h2>Login</h2>
                 <div>
                     <label for="login-email">Email:</label>
-                    <input type="text" id="login-email" name="email" required>
+                    <input type="email" id="login-email" name="email" required>
                 </div>
                 <div class="password-container">
                     <label for="login-password">Password:</label>
