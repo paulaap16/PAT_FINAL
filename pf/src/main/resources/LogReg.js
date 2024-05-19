@@ -39,4 +39,3 @@ function form2json(event) {
   return JSON.stringify(Object.fromEntries(data.entries()));
 }
 
-
