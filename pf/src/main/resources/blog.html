@@ -42,6 +42,14 @@
         <br>
     </nav>
 
+    <section id="bienvenida">
+        <div class="bienvenida-container">
+            <h2>Bienvenido al Blog!</h2>
+            <p>Donde puedes ver y comprar fotografías impresionantes</p>
+            <img src="assets/images/bienvenida.jpeg" alt="Bienvenido">
+        </div>
+    </section>
+
     <section id="trabajo">
         <div class="trabajo-container">
             <h2>Trabajo</h2>
@@ -77,6 +85,14 @@
             </div>
         </div>
     </section>
+
+    <script>
+    document.querySelectorAll('.naver a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('bienvenida').classList.add('ocultar');
+        });
+    });
+    </script>
     
     <footer>
         <div class="footer-content">

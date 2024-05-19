@@ -317,7 +317,7 @@ th:last-child, td:last-child {
     background-color: #0069d9;
     }
 
-    #trabajo, #viajes {
+    #trabajo, #viajes{
       display: none;
       padding: 20px;
   }
@@ -430,6 +430,14 @@ th:last-child, td:last-child {
     .description h2 {
         margin-top: 0;
     }
+
+    #bienvenida { /* Estilo para la sección de bienvenida */
+      text-align: center;
+      padding: 20px;
+  }
+  .ocultar {
+    display: none;
+}
 
  /* FIN  BLOG*/
   
