@@ -10,7 +10,7 @@
         
         .sidebar {
             height: 100%;
-            width: 150px; 
+            width: 153px; 
             position: fixed;
             background-color: #333;
             overflow-x: hidden;
@@ -146,11 +146,17 @@
             var content = document.getElementById('contenido');
             var menuButton = document.querySelector('.menuGaleria');
 
+            // Calcular la posición del botón MENÚ
+            var buttonRect = menuButton.getBoundingClientRect();
+            var buttonTop = buttonRect.top + window.scrollY;
+            var buttonHeight = buttonRect.height;
+
+            // Asegurar que la barra lateral aparezca justo debajo del botón MENÚ
+            sidebar.style.top = buttonTop + buttonHeight + 'px';
+
             if (!sidebarVisible) {
                 sidebar.style.left = '0';
                 content.style.marginLeft = '150px'; // Ajusta el contenido para dejar espacio al sidebar
-                
-        
             } else {
                 sidebar.style.left = '-150px';
                 content.style.marginLeft = '0';
@@ -160,19 +166,19 @@
         }
 
         function mostrarContenido(seccion) {
-        var secciones = document.querySelectorAll('.content > div');
-        for (var i = 0; i < secciones.length; i++) {
-            secciones[i].style.display = 'none'; // Oculta todas las secciones
-        }
+            var secciones = document.querySelectorAll('.content > div');
+            for (var i = 0; i < secciones.length; i++) {
+                secciones[i].style.display = 'none'; // Oculta todas las secciones
+            }
 
-        var contenidoSeccion = document.getElementById(seccion);
-        if (contenidoSeccion) {
-            contenidoSeccion.style.display = 'block'; // Muestra la sección seleccionada
+            var contenidoSeccion = document.getElementById(seccion);
+            if (contenidoSeccion) {
+                contenidoSeccion.style.display = 'block'; // Muestra la sección seleccionada
+            }
+
+            abrirMenuGaleria();
+            document.getElementById('galeriaPortada').style.display = 'none';
         }
-        
-        abrirMenuGaleria(); 
-        document.getElementById('galeriaPortada').style.display = 'none';
-    }
     </script>
       
 </body>

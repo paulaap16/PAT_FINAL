@@ -10,7 +10,7 @@
     <style>
         .logo-container {
             position: absolute;
-            top: 10px; 
+            top: 10px;  
             right: 10px; 
         }
 
@@ -31,18 +31,37 @@
             font-size: 16px;
             display: none;
         }
-        .buy-button, .add-to-cart-button {
-            width: 70px;
-            margin:  10px auto 0;
-            display: block;
-            text-align: center;
-        }
-        #cantidad {
-            width: 50px; /* Establece el ancho del campo de cantidad */
-            max-width: 100px; /* Establece el ancho máximo */
-        }
+
         .additional-fields {
             display: none;
+        }
+
+        .buy-button, .add-to-cart-button {
+            width: 80px;
+            margin: 10px auto 0;
+            display: block;
+            text-align: center;
+            background-color: #ffffff; 
+            color: #000000; 
+            border: none; 
+            padding: 8px; 
+            border-radius: 5px; 
+        }
+
+        .logoCarrito {
+            width: 70px;
+            margin:  0px auto 0;
+            display: block;
+            text-align: center;
+            background-color: transparent; /* Establece el fondo del botón como transparente */
+            border: none; /* Elimina el borde del botón */
+            padding: 0; /* Elimina el relleno del botón */
+            cursor: pointer; /* Cambia el cursor a un puntero al pasar por encima del botón */
+        }
+        
+        .Cant {
+            width: 50px; /* Establece el ancho del campo de cantidad */
+            max-width: 100px; /* Establece el ancho máximo */
         }
     </style>
 </head>
@@ -50,7 +69,7 @@
     <a href = "../blog.html#trabajo" class="volver">Volver</a>
     <h1>PAISAJES</h1>
     <div class="logo-container">
-        <button class="add-to-cart-button" onclick="accederCarrito()"><img src="../assets/images/Camara-logo.png" alt="imagen no cargada" width="46" height="36"></button>
+        <button  class="logoCarrito" onclick="accederCarrito()"><img src="../assets/images/Camara-logo.png" alt="imagen no cargada" width="46" height="36"></button>
         <div id="cart-counter">0</div>
     </div>
 
@@ -62,8 +81,8 @@
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad" placeholder="Cantidad">
-                <select id="tamaño1">
+                <input class="Cant" type="number" id="cantidad" placeholder="Cantidad" required>
+                <select id="tamaño1" required>
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -80,8 +99,8 @@
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad" placeholder="Cantidad">
-                <select id="tamaño2">
+                <input class="Cant" type="number" id="cantidad" placeholder="Cantidad" required>
+                <select id="tamaño2" required>
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -97,8 +116,8 @@
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad" placeholder="Cantidad">
-                <select id="tamaño3">
+                <input class="Cant" type="number" id="cantidad" placeholder="Cantidad" required>
+                <select id="tamaño3" required>
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
@@ -114,8 +133,8 @@
             20€
             <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
             <div class="additional-fields">
-                <input type="number" id="cantidad" placeholder="Cantidad">
-                <select id="tamaño4">
+                <input class="Cant" type="number" id="cantidad" placeholder="Cantidad" required>
+                <select id="tamaño4" required>
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
