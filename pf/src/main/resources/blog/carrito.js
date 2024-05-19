@@ -47,8 +47,9 @@ function actualizarContador() {
 
 document.querySelector('.logo-container').addEventListener('click', function() {
     const cartCounter = parseInt(document.getElementById('cart-counter').textContent);
-    if (cartCounter !== 0) {
+    window.location.href = 'carrito.html';
+    /*if (cartCounter !== 0) {
         localStorage.setItem('carrito', JSON.stringify(carrito));
         window.location.href = 'carrito.html'; // Cambiar por la ruta correcta de la página del carrito de la compra
-    }
+    }*/
 });
