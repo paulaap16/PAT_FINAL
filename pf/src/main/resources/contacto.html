@@ -5,96 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PaulaPhotography</title>
     <link rel="stylesheet" href="formato.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Cambia el color de fondo a negro */
+            margin: 0;
+            padding: 0;
+            color: #fff; /* Cambia el color del texto a blanco */
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #333; /* Cambia el color del contenedor principal */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff; /* Cambia el color del título a blanco */
+        }
+        
+        fieldset {
+            border: none;
+            margin: 20px 0; /* Agrega espacio entre cada conjunto de campos */
+            padding: 0;
+        }
+
+        legend {
+            text-align: center; /* Centra los títulos de los fieldsets */
+            font-weight: bold; /* Hace que los títulos sean negrita */
+            font-size: 1.2em; /* Ajusta el tamaño del texto del título */
+            margin-bottom: 10px; /* Agrega espacio debajo de cada título */
+            color: #fff; /* Cambia el color del texto del título a blanco */
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff; /* Cambia el color de las etiquetas a blanco */
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #555; /* Cambia el color de fondo de los campos de entrada */
+            color: #fff; /* Cambia el color del texto de los campos de entrada a blanco */
+        }
+        
+        input[type="checkbox"] {
+            margin-right: 5px;
+            color: #fff; /* Cambia el color del texto de los checkbox a blanco */
+        }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #575757;
+        }
+        .checkbox-group {
+    margin-bottom: 10px; /* Reducir la separación entre la caja de verificación y el campo de cantidad */
+}
+
+.checkbox-group input[type="checkbox"],
+.checkbox-group label {
+    display: inline; /* Hacer que las cajas de verificación y etiquetas se muestren en línea */
+    margin-right: 10px; /* Ajustar el espaciado entre las cajas de verificación y las etiquetas */
+}
+
+.checkbox-group label {
+    color: #fff; /* Cambiar el color del texto de las etiquetas */
+}
+    </style>
 </head>
 <body>
   <script src="checkCookie.js"></script>
-    <a href = "index.html" class="volver">Volver</a>
+    <a href="index.html" class="volver">Volver</a>
     <div class="corner-container">
-      <img src="assets/images/Camara-logo.png" alt="imagen no cargada">
-      <span>PF</span>
-  </div>
-  <h1><a href = "index.html" class="volver">CONTACTO</a></h1>
+        <img src="assets/images/Camara-logo.png" alt="imagen no cargada">
+        <span>PF</span>
+    </div>
+    <h1><a href="index.html" class="volver">CONTACTO</a></h1>
     <nav>
-      <ul class="contenedor">
-        <li><a href = "galeria.html" >Galería</a></li>
-        <li><a href="#" id="blog-link">Blog</a></li>
-        <ul class="submenu">
-            <li><a href="blog.html#trabajo">Trabajo</a></li>
-            <li><a href="blog.html#viajes">Viajes</a></li>
-          </ul>
-        </li>
-        <li class="aqui"><a href = "contacto.html" >Contacto</a></li>
-        <li><a href = "info.html" >Información</a>
-        <ul class="submenu">
-            <li><a href="comprar.html#sesiones">Sesiones</a></li>
-            <li><a href="comprar.html#imprimir">Imprimir</a></li>
-            <li><a href="comprar.html#servicios">Servicios</a></li>
-          </ul></li>
-        <li><a href = "inspiracion.html" >Inspiración</a></li>
-        <li><a href = "yo.html" >Quién soy</a></li>
-    </ul>
-       </nav>
-    
+        <ul class="contenedor">
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="#" id="blog-link">Blog</a></li>
+            <ul class="submenu">
+                <li><a href="blog.html#trabajo">Trabajo</a></li>
+                <li><a href="blog.html#viajes">Viajes</a></li>
+            </ul>
+            </li>
+            <li class="aqui"><a href="contacto.html">Contacto</a></li>
+            <li><a href="info.html">Información</a>
+                <ul class="submenu">
+                    <li><a href="comprar.html#sesiones">Sesiones</a></li>
+                    <li><a href="comprar.html#imprimir">Imprimir</a></li>
+                    <li><a href="comprar.html#servicios">Servicios</a></li>
+                </ul>
+            </li>
+            <li><a href="inspiracion.html">Inspiración</a></li>
+            <li><a href="yo.html">Quién soy</a></li>
+        </ul>
+    </nav>
+
     <br>
     <button class="logout-button" id="logout-button" onclick="logout()">Logout</button>
 
-
-    <form action="respuestaFormulario.html" method="get">
-        <fieldset>
-         <legend>Datos personales</legend>
-         <p>
-          <label for="nombre">Nombre:</label><br>
-          <input type="text" id="nombre" name="nombre" maxlength="50" size="25" placeholder="Tu nombre" required>
-      </p>
-      <p>
-          <label for="email">Correo electrónico:</label><br>
-          <input type="email" id="email" name="email" maxlength="50" size="25" placeholder="tucorreo@example.com" required>
-      </p>
-        </fieldset>
-        <fieldset>
-          <legend>Cita Previa</legend>
-          <p>
-              <label for="fecha">Fecha de la cita:</label><br>
-              <input type="date" id="fecha" name="fecha" min="2024-02-10" required> <!-- Año mes día -->
-          </p>
-          <p>
-              <label for="razon">Razón de la cita:</label><br>
-              <input type="checkbox" id="info_sesiones" name="razon" value="info_sesiones" >
-              <label for="info_sesiones">Información sesiones</label><br>
-              <input type="checkbox" id="comprar_foto" name="razon" value="comprar_foto" >
-              <label for="comprar_foto">Comprar foto</label><br>
-              <input type="checkbox" id="otro" name="razon" value="otro">
-              <label for="otro">Otro</label><br>
-          </p>
-          <p>
-              <label for="cantidad">Personas:</label><br>
-              <input type="number" id="cantidad" name="cantidad" min="1" max="5" required>
-          </p>
-      </fieldset>
-        <fieldset>
-         <legend>Comentarios</legend>
-         <p>
-          <label for="story">Mensaje</label><br>
-          <textarea id="story" name="instrucciones" rows="10" cols="50"></textarea>
-         </p>
-        </fieldset>
-        <fieldset>
-          <button type="submit">Enviar</button>
-          <button type="reset">Limpiar</button>
-        </fieldset>
-       </form>
-
-       <footer>
-        <div class="footer-content">
-          <div>
-            <a href="https://www.facebook.com/ejemplo" target="_blank">Facebook</a>
-            <span> | </span>
-            <a href="https://twitter.com/ejemplo" target="_blank">Twitter</a>
-            <span> | </span>
-            <a href="https://www.instagram.com/ejemplo" target="_blank">Instagram</a>
-          </div>
-        </div>
-      </footer>
-      
-</body>
-</html>
+    <div class="container">
+        <form action="respuestaFormulario.html" method="get">
+            <fieldset>
+                <legend>Datos personales</legend>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" maxlength="50" size="25" placeholder="Tu nombre" required>
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" maxlength="50" size="25" placeholder="tucorreo@example.com" required>
+            </fieldset>
+            <fieldset>
+                <legend>Cita Previa</legend>
+                <label for="fecha">Fecha de la cita:</label>
+                <input type="date" id="fecha" name="fecha" min="2024-02-10" required>
+                <label for="razon">Razón de la cita:</label><br>
+                <div class="checkbox-group">
+                
+                <input type="checkbox" id="info_sesiones" name="razon" value="info_sesiones" >
+                <label for="info_sesiones">Información sesiones</label><br>               
+                <input type="checkbox" id="comprar_foto" name="razon" value="comprar_foto" > 
+                <label for="comprar_foto">Comprar foto</label><br>       
+                <input type="checkbox" id="otro" name="razon" value="otro">
+                <label for="otro">Otro</label><br>
+                </div>
+                <br>
+                <label for="cantidad">Personas:</label><br>
+                <input type="number" id="cantidad" name="cantidad" min="1" max="5" required>
+            </fieldset>
+            <fieldset>
+                <legend>Comentarios</legend>
+                <label for="story">Mensaje</label><br>
+                <textarea id="story" name="instrucciones" rows="10" cols="50"></textarea>
+            </fieldset>
+            <fieldset>
+                <button type="submit">Enviar</button>
+                <button type="reset">Limpiar</button>
+            </fieldset>
+       
