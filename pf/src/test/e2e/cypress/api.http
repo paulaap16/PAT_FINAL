@@ -1,0 +1,54 @@
+### Create user
+
+POST http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+    "name": "usuario1",
+    "email": "ususario1@gmail.com",
+    "role" : "USER",
+    "password":"aaaaaaaA1",
+    "passwordValidate":"aaaaaaaA1"
+
+}
+
+### Login
+
+POST http://localhost:8080/api/users/me/session
+Content-Type: application/json
+
+{
+  "email": "ususario1@gmai.com",
+  "password":"aaaaaaaA1"
+}
+
+### Profile
+
+GET http://localhost:8080/api/users/me
+Cookie: session= token.id()
+
+
+##Crear Pedido: Insertamos articulos en la cesta
+
+POST http://localhost:8080/paulaphotography/pedido/cesta
+{
+
+    "Cookie" : "session=1",
+    "cantidad" : 1L,
+    "size" : Size.LARGE,
+    "url" : "assets/images/Camar-logo.png"
+
+}
+
+##Finalizar el pedido
+
+PUT http://localhost:8080/paulaphotography/pedido/cesta/fin
+{
+    "name": "Nombre",
+    "email": "email@email.com",
+    "direccion": "Calle usuario 1",
+    "telefono": "612345678",
+    "tarjeta": "ES09 0000 0000 0000 0000",
+    "fechaVencimientoTarjeta": "18 mayo 2027",
+    "cvv": "789"
+}
