@@ -21,7 +21,17 @@ function form2json(event, boton) {
   return JSON.stringify(Object.fromEntries(data.entries()));
 }
 
+function accederCarrito(){
+    fetch('/paulaphotography/user/pedidoPendiente', {method: 'get', headers: {'content-type': 'application/json'}})
+    .then(response => {
+      if (response.ok) {
+       //modificar el html
+      }
+      else mostrarAviso('No hay pedidos pendientes', 'error');
+    });
+}
 
+/*
 let carrito = {}; // Objeto para almacenar las imágenes seleccionadas y su cantidad
 
 function añadirAlCarrito(boton) {
@@ -44,12 +54,14 @@ function actualizarContador() {
     cartCounter.textContent = totalItems;
     cartCounter.style.display = 'block';
 }
-
+*/
+/*
 document.querySelector('.logo-container').addEventListener('click', function() {
     const cartCounter = parseInt(document.getElementById('cart-counter').textContent);
-    window.location.href = 'carrito.html';
-    /*if (cartCounter !== 0) {
+    //window.location.href = 'carrito.html';
+    if (cartCounter !== 0) {
         localStorage.setItem('carrito', JSON.stringify(carrito));
         window.location.href = 'carrito.html'; // Cambiar por la ruta correcta de la página del carrito de la compra
-    }*/
+    }
 });
+*/
