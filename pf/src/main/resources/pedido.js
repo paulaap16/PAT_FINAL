@@ -6,9 +6,7 @@ function pedido(datosJsonFormulario) {
       else mostrarAviso('✖︎ Error al añadir el elemento al pedido', 'error');
     });
 }
-function nada(nada){
-const prueba = 0;
-}
+
 function mostrarAviso(texto, tipo) {
   const aviso = document.getElementById("aviso");
   aviso.textContent = texto;
