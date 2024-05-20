@@ -55,6 +55,7 @@ public class ControladorPhotography {
                 .sameSite("Strict")
                 .build();
         return ResponseEntity.status(HttpStatus.CREATED).header(HttpHeaders.SET_COOKIE, session.toString()).build();
+
     }
 
     @DeleteMapping("/paulaphotography/user/session")

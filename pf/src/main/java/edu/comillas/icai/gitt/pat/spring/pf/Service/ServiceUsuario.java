@@ -1,10 +1,10 @@
 package edu.comillas.icai.gitt.pat.spring.pf.Service;
 
-import edu.comillas.icai.gitt.pat.spring.pf.Entity.Pedido;
+//import edu.comillas.icai.gitt.pat.spring.pf.Entity.Pedido;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Token;
 import edu.comillas.icai.gitt.pat.spring.pf.Entity.Usuario;
 import edu.comillas.icai.gitt.pat.spring.pf.Repository.*;
-import edu.comillas.icai.gitt.pat.spring.pf.model.ProfileRequest;
+//import edu.comillas.icai.gitt.pat.spring.pf.model.ProfileRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.ProfileResponse;
 import edu.comillas.icai.gitt.pat.spring.pf.model.RegisterRequest;
 import edu.comillas.icai.gitt.pat.spring.pf.model.Role;
@@ -13,8 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashSet;
-import java.util.Set;
+//import java.util.HashSet;
+//import java.util.Set;
 
 @Service
 public class ServiceUsuario {
@@ -38,9 +38,11 @@ public class ServiceUsuario {
 
     public Token login(String email, String password) {
         Usuario usuario = repoUsuario.findByEmail(email);
-        Token tokenUser=null;
+        Token tokenUser= new Token();
         if (usuario != null  && usuario.password.equals(password)) {
-            tokenUser = repoToken.findByUsuario(usuario);
+            //tokenUser = repoToken.findByUsuario(usuario);
+            tokenUser.usuario = usuario;
+            repoToken.save(tokenUser);
             return tokenUser;
         } else {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Datos incorrectos");
@@ -61,8 +63,12 @@ public class ServiceUsuario {
         usuarioNuevo.setRole(registro.role());
         usuarioNuevo.setEmail(registro.email());
         repoUsuario.save(usuarioNuevo);
+
         Token token = new Token ();
         token.setUsuario(usuarioNuevo);
+        repoToken.save(token);
+
+
         ProfileResponse profile = new ProfileResponse(usuarioNuevo.name, usuarioNuevo.email, Role.USER);
         return profile;
     }

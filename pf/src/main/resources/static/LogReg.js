@@ -15,7 +15,7 @@ function registrarUsuario(datosJsonFormulario) {
     method: 'post',
     body: datosJsonFormulario,
     headers: {'content-type': 'application/json'},
-    credentials: 'include'
+    //credentials: 'include'
   })
   .then(response => {
     console.log('Received response:', response);
@@ -26,7 +26,7 @@ function registrarUsuario(datosJsonFormulario) {
     }
     else{
         console.log('response not ok');
-        mostrarAvisoReg('✖︎ Error en el registro. Si ya tiene una cuenta, haga un Login', 'error');
+        mostrarAvisoReg('✖︎ Error en el registro. ', 'error');
         //location.href = 'blog.html';
     }
   })
@@ -44,13 +44,18 @@ function logUsuario(datosJsonFormulario) {
     method: 'post',
     body: datosJsonFormulario,
     headers: {'content-type': 'application/json'},
-    credentials: 'include'
+    //credentials: 'include'
   })
   .then(response => {
-    if (response.created) location.href = 'blog.html';
-    else if (response.status === 409) mostrarAvisoLog('✖︎ Usuario ya registrado', 'error');
-    else mostrarAviso('✖︎ Error en el login. Si no tiene cuenta, registrese primero', 'error');
-  });
+    if (response.ok) location.href = 'blog.html';
+    else mostrarAvisoLog('✖︎ Error en el login. Si no tiene cuenta, registrese primero', 'error');
+  })
+      .catch(error => {
+        console.log('error');
+        console.error('Error:', error);
+        mostrarAvisoReg('✖︎ Error en el registro. Si ya tiene una cuenta, haga un Login', 'error');
+        //location.href = 'blog.html';  // Redirect in case of fetch error
+      });
 }
 
 function mostrarAvisoLog(texto, tipo) {
@@ -60,13 +65,13 @@ function mostrarAvisoLog(texto, tipo) {
 }
 
 function mostrarAvisoReg(texto, tipo) {
-  const aviso = document.getElementById("aviso-registro");
+  const aviso = document.getElementById("aviso-request");
   aviso.textContent = texto;
   aviso.className = tipo;
 }
 
 function form2json(event) {
-console.log('entro en form2json');
+  console.log('entro en form2json');
   event.preventDefault();
   const data = new FormData(event.target);
   return JSON.stringify(Object.fromEntries(data.entries()));
