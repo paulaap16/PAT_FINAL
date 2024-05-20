@@ -7,3 +7,11 @@ Navegar por la página se puede hacer sin haberse registrado, pero es necesario 
 La planificacion y reparticion de tareas han sido realizadas en trello. Se adjuntan los links de ambos sprints
 https://trello.com/b/ZhfRYbWp/sprint-1
 https://trello.com/b/LykJD3BI/sprint-2
+
+POr si no se puede acceder a los links, se puede ver el contenido en las siguiente imagenes:
+
+![image](https://github.com/paulaap16/PAT_FINAL/assets/145598525/778a1432-a8d6-402d-86eb-696a3a39869e)
+
+![image](https://github.com/paulaap16/PAT_FINAL/assets/145598525/4d493c30-860e-4a30-abee-5480c66023ce)
+
+
