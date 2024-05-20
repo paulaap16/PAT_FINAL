@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.swing.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -36,7 +37,7 @@ public class ServicePedido {
         //verifico si ya existe pedido: me depende de si el usuario tiene una fecha vacia o no. si la fecha no esta puesta, se crea el pedido.
         Usuario user =repoToken.findByToken(tokenId);
         if(user==null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Usuario no encontrado");
         }
 
         //creo el articulo para guardarlo en la base de datos.

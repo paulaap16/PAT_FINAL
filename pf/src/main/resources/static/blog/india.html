@@ -74,74 +74,100 @@
         <button class="logoCarrito" onclick="accederCarrito()"><img src="../assets/images/Camara-logo.png" alt="imagen no cargada" width="46" height="36"></button>
         <div id="cart-counter">0</div>
     </div>
+    <div class="photo">
+        <form id="form1" onsubmit="pedido(form2json('form1'))">
+            <img src="../assets/images/india/arco.jpg" id="foto1" alt="Foto 1">
+
+            <div class="description">
+                <h2>a</h2>
+                20€
+                <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+                <div class="additional-fields">
+                    <input class="Cant" type="number" id="cantidad1" name="cantidad" placeholder="Cantidad" required>
+                    <select id="tamaño1" name="tamaño" required>
+                        <option value="SMALL">S</option>
+                        <option value="MEDIUM">M</option>
+                        <option value="LARGE">L</option>
+                    </select>
+                    <input type="hidden" name="imagen" value="http://localhost:8080/assets/images/india/arco.jpg">
+                    <!--<button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>-->
+                    <!--<input type="submit" class="add-to-cart-button" value = "Añadir al carrito">-->
+                    <button class="add-to-cart-button" type="submit" >Añadir al carrito</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <div class="photo">
-        <img src="../assets/images/india/tm.jpeg" alt="Foto 1">
-        <div class="description">
-            <h2>Taj Mahal</h2>
-            20€
-            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
-            <div class="additional-fields">
-                <input class="Cant" type="number" id="cantidad1" placeholder="Cantidad" required>
-                <select id="tamaño1" required>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                </select>
-                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
+        <form id="form2" onsubmit="pedido(form2json('form2'))">
+            <img src="../assets/images/india/city.jpg" id="foto2" alt="Foto 2">
+
+            <div class="description">
+                <h2>a</h2>
+                20€
+                <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+                <div class="additional-fields">
+                    <input class="Cant" type="number" id="cantida2" name="cantidad" placeholder="Cantidad" required>
+                    <select id="tamaño2" name="tamaño" required>
+                        <option value="SMALL">S</option>
+                        <option value="MEDIUM">M</option>
+                        <option value="LARGE">L</option>
+                    </select>
+                    <input type="hidden" name="imagen" value="http://localhost:8080/assets/images/india/city.jpg">
+                    <!--<button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>-->
+                    <!--<input type="submit" class="add-to-cart-button" value = "Añadir al carrito">-->
+                    <button class="add-to-cart-button" type="submit" >Añadir al carrito</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
-    
+
     <div class="photo">
-        <img src="../assets/images/india/city.jpg" alt="Foto 2">
-        <div class="description">
-            <h2>City</h2>
-            20€
-            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
-            <div class="additional-fields">
-                <input class="Cant" type="number" id="cantidad2" placeholder="Cantidad" required>
-                <select id="tamaño2" required>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                </select>
-                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
+        <form id="form3" onsubmit="pedido(form2json('form3'))">
+            <img src="../assets/images/india/pob.jpeg" id="foto3" alt="Foto 3">
+
+            <div class="description">
+                <h2>a</h2>
+                20€
+                <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+                <div class="additional-fields">
+                    <input class="Cant" type="number" id="cantidad3" name="cantidad" placeholder="Cantidad" required>
+                    <select id="tamaño3" name="tamaño" required>
+                        <option value="SMALL">S</option>
+                        <option value="MEDIUM">M</option>
+                        <option value="LARGE">L</option>
+                    </select>
+                    <input type="hidden" name="imagen" value="http://localhost:8080/assets/images/india/pob.jpeg">
+                    <!--<button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>-->
+                    <!--<input type="submit" class="add-to-cart-button" value = "Añadir al carrito">-->
+                    <button class="add-to-cart-button" type="submit" >Añadir al carrito</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
+
     <div class="photo">
-        <img src="../assets/images/india/arco.jpg" alt="Foto 3">
-        <div class="description">
-            <h2> ...</h2>
-            20€
-            <div class="additional-fields">
-                <input class="Cant" type="number" id="cantidad3" placeholder="Cantidad" required>
-                <select id="tamaño3" required>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                </select>
-                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
+        <form id="form4" onsubmit="pedido(form2json('form4'))">
+            <img src="../assets/images/india/tm.jpeg" id="foto4" alt="Foto 4">
+
+            <div class="description">
+                <h2>a</h2>
+                20€
+                <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+                <div class="additional-fields">
+                    <input class="Cant" type="number" id="cantidad4" name="cantidad" placeholder="Cantidad" required>
+                    <select id="tamaño4" name="tamaño" required>
+                        <option value="SMALL">S</option>
+                        <option value="MEDIUM">M</option>
+                        <option value="LARGE">L</option>
+                    </select>
+                    <input type="hidden" name="imagen" value="http://localhost:8080/assets/images/india/tm.jpeg">
+                    <!--<button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>-->
+                    <!--<input type="submit" class="add-to-cart-button" value = "Añadir al carrito">-->
+                    <button class="add-to-cart-button" type="submit" >Añadir al carrito</button>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="photo">
-        <img src="../assets/images/india/pob.jpeg" alt="Foto 4">
-        <div class="description">
-            <h2>...</h2>
-            20€
-            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
-            <div class="additional-fields">
-                <input class="Cant" type="number" id="cantidad4" placeholder="Cantidad" required>
-                <select id="tamaño4" required>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                </select>
-                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
-            </div>
-        </div>
+        </form>
     </div>
 
     <script>

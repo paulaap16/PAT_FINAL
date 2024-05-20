@@ -1,24 +1,31 @@
 function pedido(datosJsonFormulario) {
-  if (!compruebaPass()) return;
+  //alert('Inicio de pedido');
+  //alert(datosJsonFormulario);
   fetch('/paulaphotography/pedido/cesta', {method: 'post', body: datosJsonFormulario, headers: {'content-type': 'application/json'}, credentials: 'include'})
     .then(response => {
-      if (response.created) mostrarAviso('Foto añadida al carrito');
-      else mostrarAviso('✖︎ Error al añadir el elemento al pedido', 'error');
+      if (response.ok) alert('Foto añadida al carrito'); //mostrarAviso2
+      else alert('✖︎ Error al añadir el elemento al pedido');
     });
+    alert('Fin de pedido');
 }
 
-function mostrarAviso(texto, tipo) {
+function mostrarAviso2(texto) {
   const aviso = document.getElementById("aviso");
   aviso.textContent = texto;
-  aviso.className = tipo;
+  //aviso.className = tipo;
 }
 
-function form2json(event, boton) {
-  const imagen = boton.parentElement.parentElement.querySelector('img').src;
-  event.preventDefault();
-  const data = new FormData(event.target);
-  data.append('imagen', imagen);
-  return JSON.stringify(Object.fromEntries(data.entries()));
+function form2json(idForm) {
+    const formulario=document.getElementById(idForm);
+    const formData = new FormData(formulario);
+    const orden = {
+           cantidad: formData.get('cantidad'),
+           size: formData.get('tamaño'),
+           url: formData.get('imagen'),
+       };
+    const jsonAEnviar=JSON.stringify(orden);  //construimos un JSON con los datos del form
+    //alert(jsonAEnviar);
+    return jsonAEnviar;
 }
 function accederCarrito() {
     fetch('/paulaphotography/user/pedidoPendiente', {
@@ -119,7 +126,11 @@ function mostrarAviso3(texto) {
 }
 
 function cancelarCompra() {
-  fetch('/paulaphotography/pedido/cesta/fin', {method: 'post' headers: {'content-type': 'application/json'}, credentials: 'include'})
+  fetch('/paulaphotography/pedido/cesta/fin', {
+  method: 'post',
+  headers: {'content-type': 'application/json'},
+  credentials: 'include'
+  })
     .then(response => {
       if (response.ok) {
         document.getElementById('lista-compra-contenedor').innerHTML = '';

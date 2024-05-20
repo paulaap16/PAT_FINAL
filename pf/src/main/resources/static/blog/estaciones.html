@@ -76,75 +76,100 @@
     </div>
 
     <div class="photo">
-        <img src="../assets/images/estaciones/atocha.webp" alt="Foto 1">
-        <div class="description">
-            <h2>Atocha, Madrid</h2>
-            20€
-            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
-            <div class="additional-fields">
-                <input class="Cant" type="number" id="cantidad1" placeholder="Cantidad" required>
-                <select id="tamaño1" required>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                </select>
-                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
+        <form id="form1" onsubmit="pedido(form2json('form1'))">
+            <img src="../assets/images/estaciones/berlin.jpeg" id="foto1" alt="Foto 1">
+
+            <div class="description">
+                <h2>a</h2>
+                20€
+                <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+                <div class="additional-fields">
+                    <input class="Cant" type="number" id="cantidad1" name="cantidad" placeholder="Cantidad" required>
+                    <select id="tamaño1" name="tamaño" required>
+                        <option value="SMALL">S</option>
+                        <option value="MEDIUM">M</option>
+                        <option value="LARGE">L</option>
+                    </select>
+                    <input type="hidden" name="imagen" value="http://localhost:8080/assets/images/estaciones/berlin.jpeg">
+                    <!--<button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>-->
+                    <!--<input type="submit" class="add-to-cart-button" value = "Añadir al carrito">-->
+                    <button class="add-to-cart-button" type="submit" >Añadir al carrito</button>
+                </div>
             </div>
-        </div>
-    </div>
-    
-    <div class="photo">
-        <img src="../assets/images/estaciones/garedunord.jpeg" alt="Foto 2">
-        <div class="description">
-            <h2>gare du nord, Paris</h2>
-            20€
-            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
-            <div class="additional-fields">
-                <input class="Cant" type="number" id="cantidad2" placeholder="Cantidad" required>
-                <select id="tamaño2" required>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                </select>
-                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
-            </div>
-        </div>
-    </div>
-    <div class="photo">
-        <img src="../assets/images/estaciones/berlin.jpeg" alt="Foto 3">
-        <div class="description">
-            <h2>Berlin</h2>
-            20€
-            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
-            <div class="additional-fields">
-                <input class="Cant" type="number" id="cantidad3" placeholder="Cantidad" required>
-                <select id="tamaño3" required>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                </select>
-                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
-            </div>
-        </div>
-    </div>
-    <div class="photo">
-        <img src="../assets/images/estaciones/grancentralStation.jpg" alt="Foto 4">
-        <div class="description">
-            <h2>Grand Central Station, NY</h2>
-            20€
-            <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
-            <div class="additional-fields">
-                <input class="Cant" type="number" id="cantidad4" placeholder="Cantidad" required>
-                <select id="tamaño4" required>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                </select>
-                <button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>
-            </div>
-        </div>
+        </form>
     </div>
 
+    <div class="photo">
+        <form id="form2" onsubmit="pedido(form2json('form2'))">
+            <img src="../assets/images/estaciones/garedunord.jpeg" id="foto2" alt="Foto 2">
+
+            <div class="description">
+                <h2>a</h2>
+                20€
+                <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+                <div class="additional-fields">
+                    <input class="Cant" type="number" id="cantida2" name="cantidad" placeholder="Cantidad" required>
+                    <select id="tamaño2" name="tamaño" required>
+                        <option value="SMALL">S</option>
+                        <option value="MEDIUM">M</option>
+                        <option value="LARGE">L</option>
+                    </select>
+                    <input type="hidden" name="imagen" value="http://localhost:8080/assets/images/estaciones/garedunord.jpeg">
+                    <!--<button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>-->
+                    <!--<input type="submit" class="add-to-cart-button" value = "Añadir al carrito">-->
+                    <button class="add-to-cart-button" type="submit" >Añadir al carrito</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="photo">
+        <form id="form3" onsubmit="pedido(form2json('form3'))">
+            <img src="../assets/images/estaciones/grancentralStation.jpg" id="foto3" alt="Foto 3">
+
+            <div class="description">
+                <h2>a</h2>
+                20€
+                <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+                <div class="additional-fields">
+                    <input class="Cant" type="number" id="cantidad3" name="cantidad" placeholder="Cantidad" required>
+                    <select id="tamaño3" name="tamaño" required>
+                        <option value="SMALL">S</option>
+                        <option value="MEDIUM">M</option>
+                        <option value="LARGE">L</option>
+                    </select>
+                    <input type="hidden" name="imagen" value="http://localhost:8080/assets/images/estaciones/grancentralStation.jpg">
+                    <!--<button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>-->
+                    <!--<input type="submit" class="add-to-cart-button" value = "Añadir al carrito">-->
+                    <button class="add-to-cart-button" type="submit" >Añadir al carrito</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="photo">
+        <form id="form4" onsubmit="pedido(form2json('form4'))">
+            <img src="../assets/images/estaciones/atocha.webp" id="foto4" alt="Foto 4">
+
+            <div class="description">
+                <h2>a</h2>
+                20€
+                <button class="buy-button" onclick="mostrarFormulario(this)">Comprar</button>
+                <div class="additional-fields">
+                    <input class="Cant" type="number" id="cantidad4" name="cantidad" placeholder="Cantidad" required>
+                    <select id="tamaño4" name="tamaño" required>
+                        <option value="SMALL">S</option>
+                        <option value="MEDIUM">M</option>
+                        <option value="LARGE">L</option>
+                    </select>
+                    <input type="hidden" name="imagen" value="http://localhost:8080/assets/estaciones/atocha.webp">
+                    <!--<button class="add-to-cart-button" onclick="pedido(form2json(event,this))">Añadir al carrito</button>-->
+                    <!--<input type="submit" class="add-to-cart-button" value = "Añadir al carrito">-->
+                    <button class="add-to-cart-button" type="submit" >Añadir al carrito</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <script src="../pedido.js"></script>
     <script>
         function mostrarFormulario(button) {

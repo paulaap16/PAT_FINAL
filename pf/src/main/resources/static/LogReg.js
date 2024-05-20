@@ -74,5 +74,6 @@ function form2json(event) {
   console.log('entro en form2json');
   event.preventDefault();
   const data = new FormData(event.target);
+  //alert(JSON.stringify(Object.fromEntries(data.entries())));
   return JSON.stringify(Object.fromEntries(data.entries()));
 }
