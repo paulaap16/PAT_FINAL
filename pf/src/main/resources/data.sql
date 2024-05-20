@@ -5,8 +5,8 @@ INSERT INTO Foto (ID, PRECIO, URL) VALUES ('3', '20', '"http://localhost:8080/as
 INSERT INTO Foto (ID, PRECIO, URL) VALUES ('4', '20', '"http://localhost:8080/assets/images/paisajes/japon.jpg"');
 
 INSERT INTO Foto (ID, PRECIO, URL) VALUES ('5', '20', '"http://localhost:8080/assets/images/kenya/C.jpg"');
-INSERT INTO Foto (ID, PRECIO, URL) VALUES ('6', '20', '"http://localhost:8080/assets/images/kenya/J.jpg"');
-INSERT INTO Foto (ID, PRECIO, URL) VALUES ('7', '20', '"http://localhost:8080/assets/images/kenya/k.jpg"');
+INSERT INTO Foto (ID, PRECIO, URL) VALUES ('6', '20', '"http://localhost:8080/assets/images/kenya/J.jpeg"');
+INSERT INTO Foto (ID, PRECIO, URL) VALUES ('7', '20', '"http://localhost:8080/assets/images/kenya/k.jpeg"');
 INSERT INTO Foto (ID, PRECIO, URL) VALUES ('8', '20', '"http://localhost:8080/assets/images/kenya/m.jpg"');
 
 INSERT INTO Foto (ID, PRECIO, URL) VALUES ('9', '20', '"http://localhost:8080/assets/images/ny/R.jpeg"');
